@@ -1,10 +1,18 @@
+
+## General description 
 The program computes ray transforms in 3D of analytic functions given in './test_functions/' (see testfun_tmplt.c).
 
 Folder './test_functions' contains examples of such realizations. 
 Note that ony the function named as 'test_function(...)' will be used for computations. 
 After providing code of your test function you have to compile the code so it can be used.
 
-Compilation
+## Compilation
 
  1) Configure makefile to include your implementation of the test function in C
  2) run make with a parameter the name of your binary 
+
+## Installation
+
+//TODO
+
+## Examples
