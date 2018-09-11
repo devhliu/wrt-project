@@ -18,6 +18,10 @@ Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharo
 
 ## Sructure of the project
 
+### nfft_inversion 
+
+//TODO
+
 ### radon_analytic
 
 // TODO
