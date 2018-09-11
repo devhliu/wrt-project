@@ -1,5 +1,7 @@
 # Weighted ray / Radon transforms in 3D
 
+![picture1](../pictures/k_comparison_output.gif)
+
 This is project is a part of my phd thesis conducted under the supervision of professor [Roman Novikov](http://www.cmap.polytechnique.fr/~novikov/)
 
 Here we aim to develop new inversion methods for weighted (generaliezed) Radon transforms. 
