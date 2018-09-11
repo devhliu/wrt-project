@@ -15,6 +15,10 @@ could be numerically more stable against the noise in tomographical data compare
 The very precise theoretical explanation of given algorithms can be found in [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html).
 Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharov/).
 
+## Information about ray / Radon transforms
+
+//TODO
+
 ## Sructure of the project
 
 Here I briefly explain for what each program is intended. Details about their input, output, parameters, usage, etc., 
@@ -48,10 +52,6 @@ you can find further in respective folders (README.md).
   * #### reduction_ray_radon
         reduces the data given by ray transforms in 3D in layer-by-layer sampling scheme to the 
         data given by Radon transforms in 3D
-  
-## Description of programs 
-
-// TODO 
 
 ## Future plans
 
