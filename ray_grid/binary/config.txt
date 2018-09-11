@@ -1,0 +1,4 @@
+129			: number of points on the grid per dimension for test function (number of z-slices)
+129			: number of steps per fixed direction
+256			: number of angles on the circle
+129			: number of points on the grid per dimension (affects precision)
