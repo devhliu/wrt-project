@@ -1,6 +1,7 @@
 # Weighted ray / Radon transforms in 3D
 
-![picture1](https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/k_comparison_output.gif)
+<img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/k_comparison_output.gif" width="300" height="500" />
+
 
 This is project is a part of my phd thesis conducted under the supervision of professor [Roman Novikov](http://www.cmap.polytechnique.fr/~novikov/)
 
