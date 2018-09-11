@@ -17,7 +17,7 @@ Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharo
 
 ## Sructure of the project
 
-Here I briefly explain for what each program is intended for. The details about their input, output, parameters, usage, etc., 
+Here I briefly explain for what each program is intended. The details about their input, output, parameters, usage, etc., 
 you can find further in respective folders (README.md).
 
   * #### nfft_inversion
