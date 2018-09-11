@@ -2,7 +2,7 @@
 
 <p float="center">
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/k_comparison_output.gif" width="430" />
-  <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/shepp_logan_reduction.gif" width="430" /> 
+  <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/shepp_logan_reduction.gif" width="430" />
 </p>
 
 This is project is a part of my phd thesis conducted under the supervision of professor [Roman Novikov](http://www.cmap.polytechnique.fr/~novikov/)
