@@ -29,7 +29,7 @@ you can find further in respective folders (README.md).
         must be given by an analytical expression in a separate C file
   
   * #### radon_grid
-        computations of Radon transforms of a test-function with compact support in 
+        computations of Radon transforms in 3D of a test-function with compact support in 
         a three-dimensional unit ball; here the test-function must be given by values 
         on a discrete grid in a three-dimensional cube 
   
