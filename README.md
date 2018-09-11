@@ -12,7 +12,7 @@ The latter are of particular importance in various applications in the domain of
 problems (e.g., in tomographies, geophysics). In particular, we work on methods which 
 could be numerically more stable against the noise in tomographical data compared to existing methods. 
 
-The very precise theoretical explanation of given algorithms is in [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html).
+The very precise theoretical explanation of given algorithms can be found in [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html).
 Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharov/).
 
 ## Sructure of the project
