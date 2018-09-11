@@ -18,6 +18,24 @@ Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharo
 
 ## Sructure of the project
 
+### radon_analytic
+
+// TODO
+
+### radon_grid
+
+// TODO
+
+### ray_analytic
+
+// TODO
+
+### ray_grid
+
+// TODO
+
+### reduction_ray_radon
+
 // TODO
 
 ## Description of programs 
