@@ -24,7 +24,7 @@ Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharo
 Here I briefly explain for what each program is intended. Details about their input, output, parameters, usage, etc., 
 you can find further in respective folders (README.md).
 
-  * #### nfft_inversion
+  * #### radon_inversion
         Octave/Matlab scripts for inversion of Radon transforms in 2D/3D using projection theorem 
   
   * #### radon_analytic 
