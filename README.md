@@ -25,7 +25,7 @@ Here I briefly explain for what each program is intended. Details about their in
 you can find further in respective folders (README.md).
 
   * #### radon_inversion
-        Octave/Matlab scripts for inversion of Radon transforms in 2D/3D using projection theorem 
+        Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D using projection theorem 
   
   * #### radon_analytic 
         computations of Radon transforms in 3D of a test-function with compact support in 
