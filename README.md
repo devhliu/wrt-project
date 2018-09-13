@@ -34,7 +34,7 @@ you can find further in respective folders (README.md).
   
   * #### radon_grid
         computations of Radon transforms in 3D of a test-function with compact support in 
-        a three-dimensional unit ball; here the test-function must be given by values 
+        a three-dimensional unit ball; here the test-function is given by its values 
         on a discrete grid in a three-dimensional cube 
   
   * #### ray_analytic 
@@ -47,7 +47,7 @@ you can find further in respective folders (README.md).
         computations of ray transforms in 3D in a layer-by-layer sampling scheme of a test-function 
         with compact support in a three-dimensional unit ball (see the README.md inside project 
         for information about 'layer-by-layer sampling scheme');
-        test-function must be given by its values on a discrete grid in a three-dimensional cube
+        test-function is given by its values on a discrete grid in a three-dimensional cube
   
   * #### reduction_ray_radon
         reduces the data given by ray transforms in 3D in layer-by-layer sampling scheme to the 
