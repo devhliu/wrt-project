@@ -15,9 +15,9 @@ could be numerically more stable against the noise in tomographical data compare
 The very precise theoretical explanation of given algorithms can be found in [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html).
 Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharov/).
 
-## Information about ray / Radon transforms
+## Some information about ray / Radon transforms
 
-//TODO
+Here it will be the link to a pdf file, with minimal information about the subject. 
 
 ## Sructure of the project
 
