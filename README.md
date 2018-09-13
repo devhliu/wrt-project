@@ -55,5 +55,19 @@ you can find further in respective folders (README.md).
 
 ## Future plans
 
-// TODO
+  * The programs above are designed for computations of the classical ray/Radon transforms in 3D, however, 
+  the goal of the project is to realize some iterative inversion algorithms for weighted Radon transforms (see [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html)). 
+  
+  * The current version of the programs can be used to test Chang-type approximate inversions described 
+    precisely in [[2]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html), however, it can be 
+    automatized (in the form of programs given above) for analytic weights and weights given on the grid.
+      
+      * Add more options for computations of classical Radon transforms (for example sampling grids: 
+      right now in Radon space the grid is 'Gauss-uniform', however, the set of directions on the sphere can have many 
+      different realizations (possibly with different properties of stability of algorithms))
+      
+      * Add options for tests with noise as for classical Radon transforms and for weighted Radon transforms (like SPECT, PET)
+      
+      
+      
 
