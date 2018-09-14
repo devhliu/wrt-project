@@ -79,7 +79,7 @@ function [nodes, values, jacobian_weights] = RtFt_3d(filename, nphi, ntheta, nsh
     
     % perform fft along dimension 'nshift'
     rt_theta_slice =  permute(rt_matrix(i_theta, :, :), [3 2 1]);                      % ntotal x nphi
-    fft_theta_slice = fft(rt_theta_slice, ntotal, 1);                                  % fft along dimension : shift
+    fft_theta_slice = dshift * fft(rt_theta_slice, ntotal, 1);                                  % fft along dimension : shift
     fft_theta_slice = fftshift(fft_theta_slice .* ft_shift_correction_matrix , 1);     % fftshift along dimension : ntotal
     
     % add another layer in shift
