@@ -25,4 +25,4 @@ Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via p
  
  * **RtFt_3d.m**
  
-             [nodes, values, jacobian_weights] = RtFt_3d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
+       [nodes, values, jacobian_weights] = RtFt_3d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
