@@ -23,4 +23,4 @@ Download Matlab/Octave binaries from the link given above and make path in your 
  * **RtFt_2d.m**
  
  * **RtFt_3d.m**
-       [nodes, values, jacobian_weights] = RtFt_3d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
+             [nodes, values, jacobian_weights] = RtFt_3d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
