@@ -27,23 +27,37 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
        
        Script reads data given by Radon transforms in 3D from file and performs 
-       1D Fourier transform along shift variable. Returns arguments : nodes, values, jacobian_weights. 
+       1D Fourier transform along shift variable. 
+       Returns arguments : nodes, values, jacobian_weights. 
        
        nodes : points in 3D frequency space where Fourier transforms is evaluated (size Nx3)
        values : values of Fourier transform in nodes (size Nx1complex)
        jacobian_weights : volume associated to each node in frequency space
 
        Usage of the script
-         filename          : file where the data is stored in CSV format (sigma, phi, theta, rt)
+         filename          : file where the data is stored in CSV format
+                             Data is expected in the following format : "sigma, phi, theta, rt\n",
+                             Variables 'sigma, phi, theta' vary in the following order : 
+                 
+                                 for (sigma) 
+                                    for (phi) 
+                                       for (theta)
+                                        ....
+                                       end
+                                    end
+                                 end
+                                      
          nphi              : number of projections in azimuth angle [0, 2*pi)
          ntheta            : number of projections in polar angle (0, pi)
-         nshift            : number of hyperplanes per one direction; shifts uniformly vary [-1, 1]
-         rsupp             : radius of the support of the test function
-         padding_coeff (4) : parameter to padd Radon transforms with zeros along shifts
-       
-       Angles 'phi' are uniform on the circle and angles 'theta' correspond to Gaussian quadrature points, 
-       i.e. theta_j = arccos(t_j), (t_j, j = 1, ntheta) - Gauss-Lebato points on [-1, 1] 
+        
+                             Angles 'phi' are uniform on the circle and angles 'theta' 
+                             correspond to Gaussian quadrature points, i.e. theta_j = arccos(t_j), 
+                             (t_j, j = 1, ntheta) - Gauss-Lebato points on [-1, 1]. 
 
+         nshift            : number of hyperplanes per one direction
+                             Shifts are uniform along [-1,1]
+         rsupp             : radius of the support of the test function
+         padding_coeff (4) : parameter to padd Radon transforms with zeros along shift
  
  * **RtFt_3d.m**
  
