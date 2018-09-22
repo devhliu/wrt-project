@@ -5,7 +5,7 @@
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/shepp_logan_reduction.gif" width="400" />
 </p>
 
-This is project is a part of my phd thesis conducted under the supervision of professor [Roman Novikov](http://www.cmap.polytechnique.fr/~novikov/)
+This is project is a part of my phd thesis conducted under the supervision of professor [Roman Novikov](http://www.cmap.polytechnique.fr/~novikov/).
 
 Here we aim to develop new inversion methods for weighted (generalized) Radon transforms. 
 The latter are of particular importance in various applications in the domain of inverse 
