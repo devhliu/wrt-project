@@ -22,7 +22,7 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
 
  Load lgwt.m to your Matlab/Octave.
 
- * **RtFt_2d.m**
+ * **RtFt_3d.m**
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
        
@@ -59,9 +59,9 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
          rsupp             : radius of the support of the test function
          padding_coeff (4) : parameter to padd Radon transforms with zeros along shift
  
- * **RtFt_3d.m**
+ * **RtFt_2d.m**
  
-       [nodes, values, jacobian_weights] = RtFt_3d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
+       [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, nshift, rsupp, padding_coeff = 4)
  
  * **nfft_reconstruct_3d.m**
  
