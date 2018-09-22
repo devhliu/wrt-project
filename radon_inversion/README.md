@@ -1,6 +1,8 @@
 ### Radon inversion in 2D/3D
 
 Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via projection theorem. 
+Generally speaking, functions here take an input a CSV file containing Radon transforms and inverts them via 
+projection theorem (1D Fourier transform + 3D inverse Fourier transform).
 
   * **RtFt_2d.m** - Fourier transform of Radon transforms in 2D along shift variable
   * **RtFt_3d.m** - Fourier transforms of Radon transforms in 3D along shift variable
