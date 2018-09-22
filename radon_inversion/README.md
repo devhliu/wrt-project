@@ -15,8 +15,8 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
    You must have Matlab/Octave interface for [NFFT](https://www-user.tu-chemnitz.de/~potts/nfft/) installed. 
    The link to this interface (mex-libraries) can be found [here](https://www-user.tu-chemnitz.de/~potts/nfft/download.php).
 
-   Download Matlab/Octave binaries from the link given above and make path in your Matlab/Octave to the libraries 
-   (so that NFFT    functions could be called locally).
+   To install NFFT download Matlab/Octave binaries from the link given above (precompiled mex-files), unzip it 
+   and configure the path your Matlab/Octave to these files.
 
 #### Usage
 
