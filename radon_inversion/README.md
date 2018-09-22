@@ -26,13 +26,13 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
        
-       Script reads data given by Radon transforms in 3D from file and performs 
-       1D Fourier transform along shift variable. 
-       Returns arguments : nodes, values, jacobian_weights. 
+       Script reads Radon transforms in 3D from from file and performs 1D Fourier transforms 
+       along shift variable. 
        
-       nodes : points in 3D frequency space where Fourier transforms is evaluated (size Nx3)
-       values : values of Fourier transform in nodes (size Nx1complex)
-       jacobian_weights : volume associated to each node in frequency space
+       Returns arguments : nodes, values, jacobian_weights.
+         nodes : points in 3D frequency space where Fourier transforms is evaluated (size Nx3)
+         values : values of Fourier transform in nodes (size Nx1complex)
+         jacobian_weights : volume associated to each node in frequency space
 
        Usage of the script
          filename          : file where the data is stored in CSV format
