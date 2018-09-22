@@ -55,7 +55,7 @@ you can find further in respective folders (README.md).
 
 ## Future plans
 
-  * The programs above are designed for computations of the classical ray/Radon transforms in 3D, however, 
+  * The programs above are designed for computations of the classical ray/Radon transforms in 3D and their inversion, however, 
   the goal of the project is to realize some iterative inversion algorithms for weighted Radon transforms (see [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html)). 
   
   * The current version of the programs can be used to test Chang-type approximate inversions (described 
