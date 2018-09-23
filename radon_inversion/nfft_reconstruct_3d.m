@@ -26,13 +26,10 @@ function test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weig
   nodes_normalized = nodes * deltax;
   nodes_normalized = nodes_normalized';
 
-  % Initialisation of plan (for sufficient amount of memory)
-  plan=nfft_init_3d(ngrid, ngrid, ngrid, size(nodes_normalized,2)); 
-  
-  %Initialization plan for the case of lack of memory
-  % not clear what is n and what is cutoff
-  %n=2^(ceil(log(max([ngrid; ngrid; ngrid]))/log(2))+1);
-  %plan=nfft(3, [ngrid; ngrid; ngrid;], size(nodes_normalized,1), n,n,n,15,bitor(PRE_FG_PSI,bitor(FG_PSI,NFFT_OMP_BLOCKWISE_ADJOINT)),FFTW_MEASURE);
+  % Initialisation of plan
+  n=2^(ceil(log(ngrid)/log(2))+1);
+  plan = nfft_init_guru(3, ngrid, ngrid, ngrid, size(nodes_normalized,2), n, n, n, 8, 
+  NFFT_OMP_BLOCKWISE_ADJOINT,FFTW_ESTIMATE);
   
   % set nodes in plan
   nfft_set_x(plan, nodes_normalized);
@@ -40,19 +37,18 @@ function test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weig
   % precomputations
   nfft_precompute_psi(plan);
   
-  %set Fourier coefficients
+  % set Fourier coefficients
   nfft_set_f(plan, summands);
   
-  %inversion
+  % inversion
   nfft_adjoint(plan);
   
-  %return function values  
+  % return function values  
   test_function = reshape(real(nfft_get_f_hat(plan)), ngrid, ngrid, ngrid);
-  
   nfft_finalize(plan);
   
-  %complicated turns (consequences of reshape)
-  test_function = permute(test_function, [2 3 1]);  
+  % complicated turns (consequences of reshape)
+  test_function = permute(test_function, [2 3 1]);
   test_function = flipdim(test_function, 3);
   test_function = flipdim(test_function, 1);
  
