@@ -20,7 +20,7 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
 
 #### Usage
 
- Load lgwt.m to your Matlab/Octave.
+ Before to use RtFt_3d.m load lgwt.m to your Matlab/Octave.
 
  * **RtFt_3d.m**
  
@@ -83,7 +83,6 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
                                  end
                                       
          nphi              : number of projections in azimuth angle [0, 2*pi)
-        
                              Angles 'phi' are uniform on the circle.
 
          nshift            : number of hyperplanes per one direction
@@ -94,4 +93,22 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
  * **nfft_reconstruct_3d.m**
  
        test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weights)
+       
+       Script performs reconstruction of a function from its Fourier transforms at 'nodes' 
+       with values 'values'. Mathematically it works as a discretized version of (inverse) Fourier integral 
+       in 3D. Result is given as a 3D matrix of size : ngrid x ngrid x ngrid, which, in turn, is a 
+       grid on [-1,1)x[-1,1)x[-1,1). 
 
+       Returns arguments : test_function - real matrix of size (ngrid x ngrid x ngrid)
+
+       Usage of the script
+        ngrid : number of points in [-1.0, 1.0); ngrid must be even;
+                Note that it is number of points on non-closed interval. 
+                NFFT assumes that your signal is periodic, so the values on the missing edge points
+                of the grid is can reconstructed from periodicity.  
+        
+        nodes            : matrix of size (Nnodesx3); these are the points 
+                           in space where Fourier transform of signal is known. 
+        values           : vector of size (Nnodesx1(complex)); these are the values of 
+                           Fourier transform of the signal at nodes;
+        jacobian_weights : volumes of cells related to nodes in the Riemann summ of discretized Fourier integral
