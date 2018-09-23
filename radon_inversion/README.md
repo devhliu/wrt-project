@@ -30,16 +30,16 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
        along shift variable. 
        
        Returns arguments : nodes, values, jacobian_weights.
-         nodes : points in 3D frequency space where Fourier transforms is evaluated (size Nx3)
-         values : values of Fourier transform in nodes (size Nx1complex)
+         nodes            : points in 3D frequency space where Fourier transforms is evaluated (size Nx3)
+         values           : values of Fourier transform in nodes (size Nx1complex)
          jacobian_weights : volume associated to each node in frequency space
 
        Usage of the script
          filename          : file where the data is stored in CSV format
-                             Data is expected in the following format : "sigma, phi, theta, rt\n",
-                             Variables 'sigma, phi, theta' vary in the following order : 
+                             Data is expected in the following format : "[shift], [phi], [theta], [value]\n",
+                             Variables 'shift, phi, theta' vary in the following order : 
                  
-                                 for (sigma) 
+                                 for (shift) 
                                     for (phi) 
                                        for (theta)
                                         ....
@@ -57,11 +57,39 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
          nshift            : number of hyperplanes per one direction
                              Shifts are uniform along [-1,1]
          rsupp             : radius of the support of the test function
-         padding_coeff (4) : parameter to padd Radon transforms with zeros along shift
+         padding_coeff (default=4) : parameter to padd Radon transforms with zeros along shift
  
  * **RtFt_2d.m**
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, nshift, rsupp, padding_coeff = 4)
+       
+       Script reads Radon transforms in 2D from from file and performs 1D Fourier transforms 
+       along shift variable. 
+       
+       Returns arguments : nodes, values, jacobian_weights.
+         nodes            : points in 2D frequency domain where Fourier transforms is evaluated (size Nx3)
+         values           : values of Fourier transform in nodes (size Nx1complex)
+         jacobian_weights : volume associated to each node in frequency space
+
+       Usage of the script
+         filename          : file where the data is stored in CSV format
+                             Data is expected in the following format : "[shift], [phi], [value]\n",
+                             Variables 'shift, phi' vary in the following order : 
+                 
+                                 for (shift) 
+                                    for (phi) 
+                                        ...
+                                    end
+                                 end
+                                      
+         nphi              : number of projections in azimuth angle [0, 2*pi)
+        
+                             Angles 'phi' are uniform on the circle.
+
+         nshift            : number of hyperplanes per one direction
+                             Shifts are uniform along [-1,1].
+         rsupp             : radius of the support of the test function
+         padding_coeff(default=4) : parameter to padd Radon transforms with zeros along shift
  
  * **nfft_reconstruct_3d.m**
  
