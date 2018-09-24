@@ -49,7 +49,6 @@ function test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weig
   
   % complicated turns (consequences of reshape)
   test_function = permute(test_function, [2 3 1]);
-  test_function = flipdim(test_function, 3);
-  test_function = flipdim(test_function, 1);
+  %TODO correciton rotations
  
 end
