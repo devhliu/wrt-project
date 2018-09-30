@@ -26,10 +26,10 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
        
-       Script reads Radon transforms in 3D from from file and performs 1D Fourier transforms 
+       Script reads Radon transforms in 3D from file and performs 1D Fourier transforms 
        along shift variable. 
        
-       Returns arguments : nodes, values, jacobian_weights.
+       Returns values
          nodes            : points in 3D frequency space where Fourier transforms is evaluated (size Nx3)
          values           : values of Fourier transform in nodes (size Nx1complex)
          jacobian_weights : volume associated to each node in frequency space
@@ -63,10 +63,10 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, nshift, rsupp, padding_coeff = 4)
        
-       Script reads Radon transforms in 2D from from file and performs 1D Fourier transforms 
+       Script reads Radon transforms in 2D from file and performs 1D Fourier transforms 
        along shift variable. 
        
-       Returns arguments : nodes, values, jacobian_weights.
+       Returns values
          nodes            : points in 2D frequency domain where Fourier transforms is evaluated (size Nx3)
          values           : values of Fourier transform in nodes (size Nx1complex)
          jacobian_weights : volume associated to each node in frequency space
@@ -99,7 +99,8 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
        in 3D. Result is given as a 3D matrix of size : ngrid x ngrid x ngrid, which, in turn, is a 
        grid on [-1,1)x[-1,1)x[-1,1). 
 
-       Returns arguments : test_function - real matrix of size (ngrid x ngrid x ngrid)
+       Returns values 
+         test_function : real-valued matrix of size (ngrid x ngrid x ngrid)
 
        Usage of the script
         ngrid : number of points in [-1.0, 1.0); ngrid must be even;
