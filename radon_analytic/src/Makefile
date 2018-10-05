@@ -5,11 +5,12 @@ DEPS=init.h integral.h test_function.h
 TFUNC=
 OBJ=radon3d_analytic.o init.o integral.o ${TFUNC%.*}.o
 ODIR=../binary
+ONAME=
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) 
 
-$(ODIR)/ray3d_grid: $(OBJ)
+$(ODIR)/$(ONAME): $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
