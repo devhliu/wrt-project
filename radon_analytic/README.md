@@ -9,7 +9,7 @@ File "test_function.c" contains a template of such realization. Note that only t
 The programs here are designed to work under Unix operating systems.  
 To compile the project on your computer you need to have installed:  
 
-GCC compiler, OpenMP libraries, GNU GSL libraries
+GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 
 ## Compilation / Installation
   1) Go to 'src' directory:  
