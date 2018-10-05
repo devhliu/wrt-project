@@ -2,7 +2,7 @@
 
 This program performs analytic evaluations of classical Radon transforms in 3D (along 2D planes) of analytic functions whose prototype should be realized in "test_function.c".  
 
-File "test_function.c" contains a template of such realization. Note that ony the function with name "test_function" will be used for computations. After realizaiton of your test function you have to compile the code so it can be used.  
+File "test_function.c" contains a template of such realization. Note that only the function with name "test_function" will be used for computations. After realizaiton of your test function you have to compile the code so it can be used.  
 
 ## Requirements 
 
@@ -35,5 +35,27 @@ GCC compiler, OpenMP libraries, GNU GSL libraries
   'test_function.c' and repeat steps (1-4), possibly setting a new name in 'ONAME'
   
 ## Usage / Examples
+
+(binary) -h --help                 Display usage information
+(binary) -p --parameters filename  Read parameters of the grid in Radon space from config file
+(binary) -o --output filename      Write output data to a file
+(binary) -n --nthreads number      Use (number) of OpenMP threads for parallelization
+
+### Config file requirements
+
+The purpose of the config file for parameters -p (--parameters) is to provide to the program information about the grid  
+in Radon space. Recall that data in Radon space is parametrized by directions on the unit sphere (two angles: latitude, longitude) and number of shifts (varying uniformly in [-1,1]) along each direction. Also, though the test-function is
+given by an analytical expression its integration over planes necessarily requires discretization which is also must be 
+given in the config file. More precisely, a test-function is always assumed to be supported in a unit ball in 3D which 
+lies inside the unit cube [-1,1]^3. So the parameter to be specified is a number of points per dimension in the uniform rectangular grid inside this unit cube.
+
+1) The first line contains a number of longitude angles which are positioned uniformly along [0,2pi].  
+2) The second line contains a number of latitude angles which are positioned according to Gauss-Legendre quadrature 
+   rule on [0, pi].  
+3) The third line contains a number of shifts which are positioned uniformly along [-1,1].  
+4) The fourth lines containes a number of points per dimension in a unit cube.  
+
+
+
 
 
