@@ -7,7 +7,7 @@ File "test_function.c" contains a template of such realization. Note that only t
 **IMPORTANT:** This program computes ray transforms not for all rays in 3D, but accordingly to a slice-by-slice scheme. 
 It means that support of the test-function is sliced into a finite set of planes parallel to XY and in each 
 plane the ray transforms are computed. For each such plane ray transforms are computed for rays with uniformly distributed 
-directions and shifts (in the plane). The output is stored in a CSV file, where the data is oreder as:  
+directions and shifts (in the plane). The output is stored in a CSV file, where the data is ordered as follows:  
  > [zslice], [shift], [angle of direction], [ray transform]
 
 ## Requirements 
