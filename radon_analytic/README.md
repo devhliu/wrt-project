@@ -67,11 +67,11 @@ Some comments are allowed after each line, however the length of each line shoul
 ### Output
 
 The output stored in a specified output file (-o --output) in a CSV format in the following order:  
-[shift], [longitude angle], [latitude angle], [value of Radon transform]
+**[shift], [longitude angle], [latitude angle], [value of Radon transform]**  
 
-Example:
-> -1.000000, 0.000000, 3.122878, -0.009362
-> -1.000000, 0.000000, 3.098635, -0.009187
-> -1.000000, 0.000000, 3.074249, -0.008878
+Example:  
+> -1.000000, 0.000000, 3.122878, -0.009362  
+> -1.000000, 0.000000, 3.098635, -0.009187  
+> -1.000000, 0.000000, 3.074249, -0.008878  
 
 
