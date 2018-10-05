@@ -32,14 +32,14 @@ GCC compiler, OpenMP libraries, GNU GSL libraries
         make clean 
       ```
   If you want to generate data for other test-function then you have to change the file
-  'test_function.c' and repeat steps (1-4), possibly setting a new name in 'ONAME'
+  'test_function.c' and repeat steps (1-4), possibly setting a new name in 'ONAME'.
   
 ## Usage / Examples
 
-(binary) -h --help                 Display usage information  
-(binary) -p --parameters filename  Read parameters of the grid in Radon space from config file  
-(binary) -o --output filename      Write output data to a file  
-(binary) -n --nthreads number      Use (number) of OpenMP threads for parallelization  
+(binary) -h --help                  : Display usage information  
+(binary) -p --parameters filename   : Read parameters of the grid in Radon space from config file  
+(binary) -o --output filename       : Write output data to a file  
+(binary) -n --nthreads number       : Use (number) of OpenMP threads for parallelization  
 
 ### Config file requirements
 
