@@ -2,8 +2,13 @@
 ## General description 
 
 This program computes ray transforms in 3D of analytic functions whose prototype should be realized in "test_function.c".  
-
 File "test_function.c" contains a template of such realization. Note that only the function with name "test_function" will be used for computations. After realizaiton of your test function you have to compile the code so you can run it.  
+
+**IMPORTANT:** This program computes ray transforms not for all rays in 3D, but accordingly to a slice-by-slice scheme. 
+It means that support of the test-function is sliced into a finite set of planes parallel to XY and in each 
+plane the ray transforms are computed. For each such plane ray transforms are computed for rays with uniformly distributed 
+directions and shifts (in the plane). The output is stored in a CSV file, where the data is oreder as:  
+ > [zslice], [shift], [angle of direction], [ray transform]
 
 ## Requirements 
 
@@ -38,42 +43,43 @@ GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 ## Usage / Examples
 
 (binary) -h --help &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Display usage information  
-(binary) -p --parameters filename &nbsp;&nbsp;&nbsp;&nbsp;: Read parameters of the grid in Radon space from config file  
+(binary) -p --parameters filename &nbsp;&nbsp;&nbsp;&nbsp;: Read parameters of the ray grid from config file  
 (binary) -o --output filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Write output data to a file  
 (binary) -n --nthreads number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Use (number) of OpenMP threads for parallelization  
 
 ### Config file requirements
 
 The purpose of the config file for parameters -p (--parameters) is to provide to the program information about the grid  
-in Radon space. Recall that data in Radon space is parametrized by directions on the unit sphere (two angles: latitude, longitude) and  by shifts along each direction (shifts vary uniformly in [-1,1]). Also, though the test-function is
+in ray space in slice-by-slice sampling scheme. The output data is parametrized by plane slice (z coordinate) and 
+by the cooridnates of a ray in this plane (polar angle, shift). Also, though the test-function is
 given by an analytical expression its integration over planes necessarily requires discretization which is also must be 
 given in the config file. More precisely, a test-function is always assumed to be supported in a unit ball in 3D which 
 lies inside the unit cube [-1,1]^3. So the parameter to be specified is a number of points per dimension in the uniform rectangular grid inside this unit cube.
 
-1) The first line contains a number of longitude angles which are positioned uniformly along [0,2pi].  
-2) The second line contains a number of latitude angles which are positioned according to Gauss-Legendre quadrature 
-   rule on [0, pi].  
-3) The third line contains a number of shifts which are positioned uniformly along [-1,1].  
-4) The fourth lines containes a number of points per dimension in a unit cube.  
+1) The first line contains a number of shifts which are positioned uniformly along [-1,1] (for a fixed direction in 
+a fixed plane).  
+1) The second line contains a number of polar angles which are positioned uniformly along [0,2pi].  
+3) The third line contains a number of z-slices which are positioned uniformly along [-1,1]. This value 
+is also corresponds to a number of points per dimension on [-1,1] for the grid on the unit cube [-1,1]^3.
 
 Some comments are allowed after each line, however the length of each line should not exceed 128 symbols.
 
 ### Example of a config file
 
-> 256			: number of longitude angles  
-> 128			: number of latitude angles  
 > 129			: number of steps per fixed direction  
-> 129			: number of points on the grid per dimension
+> 256			: number of directions, i.e., longitude angles  
+> 129			: number of z-slices and points on the grid per dimension  
+
 
 ### Output
 
 The output stored in a specified output file (-o --output) in a CSV format in the following order:  
-**[shift], [longitude angle], [latitude angle], [value of Radon transform]**  
+**[z coordinate of slice], [shift in the plane], [polar angle in the plane], [value of the ray transform]**  
 
 Example:  
-> -1.000000, 0.000000, 3.122878, -0.009362  
-> -1.000000, 0.000000, 3.098635, -0.009187  
-> -1.000000, 0.000000, 3.074249, -0.008878
+> -1.000000, -1.000000, 5.571418, 0.000000  
+> -1.000000, -1.000000, 5.595962, 0.000000  
+> -1.000000, -1.000000, 5.620506, 0.000000  
 
 ### Examples of test-functions
 
