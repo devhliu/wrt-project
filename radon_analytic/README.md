@@ -59,9 +59,9 @@ Some comments are allowed after each line, however the length of the whole line 
 
 ### Example of a config file
 
-> 256			: number of longitude angles
-> 128			: number of latitude angles
-> 129			: number of steps per fixed direction
-> 129			: number of points on the grid per dimension
+> 256			: number of longitude angles  
+> 128			: number of latitude angles  
+> 129			: number of steps per fixed direction  
+> 129			: number of points on the grid per dimension  
 
 
