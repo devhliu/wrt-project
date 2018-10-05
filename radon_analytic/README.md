@@ -36,15 +36,15 @@ GCC compiler, OpenMP libraries, GNU GSL libraries
   
 ## Usage / Examples
 
-(binary) -h --help                  : Display usage information  
-(binary) -p --parameters filename   : Read parameters of the grid in Radon space from config file  
-(binary) -o --output filename       : Write output data to a file  
-(binary) -n --nthreads number       : Use (number) of OpenMP threads for parallelization  
+(binary) -h --help &nbsp;&nbsp;&nbsp;&nbsp;: Display usage information  
+(binary) -p --parameters filename &nbsp;&nbsp;&nbsp;&nbsp;: Read parameters of the grid in Radon space from config file  
+(binary) -o --output filename &nbsp;&nbsp;&nbsp;&nbsp;: Write output data to a file  
+(binary) -n --nthreads number &nbsp;&nbsp;&nbsp;&nbsp;: Use (number) of OpenMP threads for parallelization  
 
 ### Config file requirements
 
 The purpose of the config file for parameters -p (--parameters) is to provide to the program information about the grid  
-in Radon space. Recall that data in Radon space is parametrized by directions on the unit sphere (two angles: latitude, longitude) and number of shifts (varying uniformly in [-1,1]) along each direction. Also, though the test-function is
+in Radon space. Recall that data in Radon space is parametrized by directions on the unit sphere (two angles: latitude, longitude) and  by shifts along each direction (shifts vary uniformly in [-1,1]). Also, though the test-function is
 given by an analytical expression its integration over planes necessarily requires discretization which is also must be 
 given in the config file. More precisely, a test-function is always assumed to be supported in a unit ball in 3D which 
 lies inside the unit cube [-1,1]^3. So the parameter to be specified is a number of points per dimension in the uniform rectangular grid inside this unit cube.
