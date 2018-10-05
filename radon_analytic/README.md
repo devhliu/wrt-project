@@ -11,13 +11,13 @@ so it can be used.
 
 ## Requirements 
 
-The programs here are designed to work under Unix operating systems.__ 
-To compile the project on your computer you need to have installed:__
+The programs here are designed to work under Unix operating systems.
+To compile the project on your computer you need to have installed:
 
 GCC compiler, OpenMP libraries, GNU GSL libraries
 
 ## Compilation 
-  1) Go to 'src' directory: 
+  1) Go to 'src' directory:   
           cd src
   2)
 ## Installation 
