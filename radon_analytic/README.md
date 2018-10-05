@@ -55,13 +55,14 @@ lies inside the unit cube [-1,1]^3. So the parameter to be specified is a number
 3) The third line contains a number of shifts which are positioned uniformly along [-1,1].  
 4) The fourth lines containes a number of points per dimension in a unit cube.  
 
-Some comments are allowed after each line, however the length of the whole line should not exceed 128 symbols.
+Some comments are allowed after each line, however the length of each line should not exceed 128 symbols.
 
 ### Example of a config file
 
 > 256			: number of longitude angles  
 > 128			: number of latitude angles  
 > 129			: number of steps per fixed direction  
-> 129			: number of points on the grid per dimension  
+> 129			: number of points on the grid per dimension
+>
 
 
