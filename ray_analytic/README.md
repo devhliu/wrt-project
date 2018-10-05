@@ -2,7 +2,7 @@
 ## General description 
 
 This program computes ray transforms in 3D of analytic functions whose prototype should be realized in "test_function.c".  
-File "test_function.c" contains a template of such realization. Note that only the function with name "test_function" will be used for computations. After realizaiton of your test function you have to compile the code so you can run it.  
+File "test_function.c" contains a template of such realization. Note that only the function with name "test_function" will be used for computations. After realizaiton of your test function you have to be compiled the code so you can run it.  
 
 **IMPORTANT:** This program computes ray transforms not for all rays in 3D, but accordingly to a slice-by-slice scheme. 
 It means that support of the test-function is sliced into a finite set of planes parallel to XY and in each 
