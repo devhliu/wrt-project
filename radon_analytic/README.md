@@ -72,6 +72,12 @@ The output stored in a specified output file (-o --output) in a CSV format in th
 Example:  
 > -1.000000, 0.000000, 3.122878, -0.009362  
 > -1.000000, 0.000000, 3.098635, -0.009187  
-> -1.000000, 0.000000, 3.074249, -0.008878  
+> -1.000000, 0.000000, 3.074249, -0.008878
+
+### Examples of test-functions
+
+One can find in folder 'test_functions' some examples of realizations of the test-functions.  
+In order to try them, rename any of these files to 'test_function.c' and copy it to them to the main directory of   'radon_analytic'. Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
+test-function. 
 
 
