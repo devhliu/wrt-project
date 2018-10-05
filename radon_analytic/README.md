@@ -17,8 +17,10 @@ To compile the project on your computer you need to have installed:
 GCC compiler, OpenMP libraries, GNU GSL libraries
 
 ## Compilation 
-  1) Go to 'src' directory:   
+  1) Go to 'src' directory:  
+        ```
           cd src
+        ```
   2)
 ## Installation 
 
