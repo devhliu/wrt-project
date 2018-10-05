@@ -17,7 +17,7 @@ Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharo
 
 ## Some information about ray / Radon transforms
 
-Here it will be the link to a pdf file, with minimal information about the subject. 
+Here it will be the link to a pdf file with minimal information about the subject. 
 
 ## Sructure of the project
 
