@@ -85,7 +85,6 @@ Example:
 
 One can find in folder 'test_functions' some examples of realizations of test-functions.  
 In order to try them, rename any of those files to 'test_function.c' and copy them to the main directory of 'ray_analytic'.  
-
 Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
 test-function. 
 
