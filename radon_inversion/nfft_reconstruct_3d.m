@@ -1,7 +1,7 @@
-%Reconstruction of a test function in 3D from its Fouirer transforms
+% Reconstruction of a test function in 3D from its Fouirer transforms
 
 function test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weights)
-% nfft_reconstruct_ftrt3d_tfunc3d.m
+% nfft_reconstruct_3d.m
 % depends NFFT library (see Chemnitz-TU for NFFT)
   
 % Script performs reconstruction of a function from its Fourier transforms at 'nodes' 
@@ -44,11 +44,17 @@ function test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weig
   nfft_adjoint(plan);
   
   % return function values  
-  test_function = reshape(real(nfft_get_f_hat(plan)), ngrid, ngrid, ngrid);
-  nfft_finalize(plan);
+  test_function_array = real(nfft_get_f_hat(plan));
   
-  % complicated turns (consequences of reshape)
-  test_function = permute(test_function, [2 3 1]);
-  %TODO correciton rotations
- 
+  % return test-function as a 3d matrix
+  test_function = zeros(ngrid, ngrid, ngrid);
+  for i = 1 : ngrid
+    for j = 1 : ngrid
+      for k = 1 : ngrid
+        test_function(j, i , 128-k + 1) = test_function_array(k + 128*(i-1) + 128^2 * (j-1));
+      end
+    end
+  end
+  
+  nfft_finalize(plan);
 end

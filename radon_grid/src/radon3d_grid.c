@@ -255,7 +255,7 @@ int main(int argc, char * argv[]) {
 		    double rt = plane_integral3d(values, ngrid, 
 						 phi[i_phi], theta[i_theta], shift[i_shift]);
 		    //printf("phi %d, theta %d, rt %lf\n", i_phi, i_theta, rt);
-		    fprintf(foutput, "%lf, %lf, %lf, %lf\n", shift[i_shift], phi[i_phi], theta[i_theta], rt);
+		    fprintf(foutput, "%lf, %lf, %lf, %lf\n", shift[i_shift], phi[i_phi], theta[i_theta], rt); // this is a weak point in parallelization (tight writing), should be done in chunks
                 }
             }
         }
