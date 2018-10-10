@@ -1,6 +1,6 @@
 ## General information
 
-This program performs analytic evaluations of classical Radon transforms in 3D (along 2D planes) of analytic functions whose prototype should be realized in "test_function.c".  
+This program computes classical Radon transforms in 3D (along 2D planes) of analytic functions whose prototype should be realized in "test_function.c".  
 
 File "test_function.c" contains a template of such realization. Note that only the function with name "test_function" will be used for computations. After realizaiton of your test function you have to compile the code so it can be used.  
 
@@ -76,8 +76,8 @@ Example:
 
 ### Examples of test-functions
 
-One can find in folder 'test_functions' some examples of realizations of the test-functions.  
-In order to try them, rename any of these files to 'test_function.c' and copy it to them to the main directory of   'radon_analytic'. Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
+One can find in folder 'test_functions' some examples of realizations of some simple test-functions.  
+In order to try them, rename any of those files to 'test_function.c' and copy them to the main directory of 'radon_analytic'.     Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
 test-function. 
 
 
