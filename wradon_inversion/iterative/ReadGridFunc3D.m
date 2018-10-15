@@ -2,7 +2,7 @@
 % It is assumed that function is given in a CSV file with ordering 
 % x -> y -> z (starting with a minimal index)
 
-function grid_function = read_func_grid3d(ngrid, file)
+function grid_function = ReadGridFunc3D(ngrid, file)
   grid_function = zeros(ngrid, ngrid, ngrid);
   function_array = csvread(file);
   for i = 1 : ngrid

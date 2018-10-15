@@ -30,13 +30,13 @@ function test_function = IterativeWRadonInv3D(general_params, init_data_params,
 %                             stopping_iteration = flag_values{1} 
 %                             stoppping_precision = flag_values{2}
 %
-%     for a good choice of number of harmonics algo converges geometrically to quasi-optimum
+%     for a good choice of number of harmonics the algorithm converges geometrically to quasi-optimum
 %     set eps as precision to quasi-solution - it implies the exact number of iterations you need to do
 %     to reach the quasi-optimum 
 
 % ----------------------------read initial function ----------------------------
   ngrid = general_params{1};                                                    % size of the grid
-  F0 = ReadFuncGgrid3D(init_data_params{1});                                    % read initial function from file
+  F0 = ReadGgridFunc3D(init_data_params{1});                                    % read initial function from file (by Chang formula)
 
   if (degree == 0) 
     test_function = F0;
