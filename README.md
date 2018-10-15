@@ -55,7 +55,7 @@ you can find further in respective folders (README.md).
   * #### wradon_inversion/iterative (Matlab / Octave)
         iterative inversions of weighted Radon transforms in 3D. Takes on input initial starting point 
         and data about the weight (coefficients in spherical harmonics expansion) solves iteratively 
-        the related integral equation (see [[3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html)).
+        the related integral equation (see [3](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html)).
 
 ## Future plans
 
