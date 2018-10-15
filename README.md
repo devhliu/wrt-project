@@ -52,6 +52,11 @@ you can find further in respective folders (README.md).
   * #### reduction_ray_radon
         reduces the data given by ray transforms in 3D in layer-by-layer sampling scheme to the 
         data given by Radon transforms in 3D
+  * #### wradon_inversion/iterative
+        iterative inversions of weighted Radon transforms in 3D. Takes on input initial starting point 
+        and data about the weight (coefficients in spherical harmonics expansion) solves iteratively 
+        the related integral equation (see 
+        [[3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html)).
 
 ## Future plans
 
