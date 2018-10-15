@@ -24,35 +24,35 @@ Here it will be the link to a pdf file with minimal information about the subjec
 Here I briefly explain for what each program is intended. Details about their input, output, parameters, usage, etc., 
 you can find further in respective folders (README.md).
 
-  * #### radon_inversion
+  * #### radon_inversion (Matlab / Octave)
         Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D using projection theorem 
   
-  * #### radon_analytic 
+  * #### radon_analytic (C) 
         computations of Radon transforms in 3D of a test-function with compact support in 
         a three-dimensional unit ball; the main feature is that the expression of the test-function 
         must be given by an analytical expression in a separate C file
   
-  * #### radon_grid
+  * #### radon_grid (C)
         computations of Radon transforms in 3D of a test-function with compact support in 
         a three-dimensional unit ball; here the test-function is given by its values 
         on a discrete grid in a three-dimensional cube 
   
-  * #### ray_analytic 
+  * #### ray_analytic (C) 
         computations of ray transforms in 3D in a layer-by-layer sampling scheme of a test-function 
         with compact support in a three-dimensional unit ball (see also the README.md inside project 
         for information about 'layer-by-layer sampling scheme');
         the test-function must be given by an analytical expression in a separate C file
   
-  * #### ray_grid
+  * #### ray_grid (C)
         computations of ray transforms in 3D in a layer-by-layer sampling scheme of a test-function 
         with compact support in a three-dimensional unit ball (see the README.md inside project 
         for information about 'layer-by-layer sampling scheme');
         test-function is given by its values on a discrete grid in a three-dimensional cube
   
-  * #### reduction_ray_radon
+  * #### reduction_ray_radon (C)
         reduces the data given by ray transforms in 3D in layer-by-layer sampling scheme to the 
         data given by Radon transforms in 3D
-  * #### wradon_inversion/iterative
+  * #### wradon_inversion/iterative (Matlab / Octave)
         iterative inversions of weighted Radon transforms in 3D. Takes on input initial starting point 
         and data about the weight (coefficients in spherical harmonics expansion) solves iteratively 
         the related integral equation (see [[3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html)).
