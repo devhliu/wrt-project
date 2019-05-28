@@ -7,10 +7,10 @@
 
 This is project is a part of my phd thesis conducted under the supervision of professor [Roman Novikov](http://www.cmap.polytechnique.fr/~novikov/).
 
-Here we aim to develop new inversion methods for weighted (generalized) Radon transforms. 
+Here we aim to develop new inversion methods for weighted (generalized) Radon transforms in Euclidean space. 
 The latter are of particular importance in various applications in the domain of inverse 
 problems (e.g., in tomographies, geophysics). In particular, we work on methods which 
-could be numerically more stable against the noise in tomographical data compared to existing methods. 
+could be numerically more stable against the noise in tomographical data in SPECT. 
 
 The very precise theoretical explanation of given algorithms can be found in [[2,3]](http://www.cmap.polytechnique.fr/~fedor.goncharov/publications.html).
 Also my personal page is [here](http://www.cmap.polytechnique.fr/~fedor.goncharov/).
@@ -22,7 +22,7 @@ Here it will be the link to a pdf file with minimal information about the subjec
 ## Sructure of the project
 
 Here I briefly explain for what each program is intended. Details about their input, output, parameters, usage, etc., 
-you can find further in respective folders (README.md).
+you can find further in respective folders.
 
   * #### radon_inversion (Matlab / Octave)
         Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D using projection theorem 
