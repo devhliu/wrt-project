@@ -1,4 +1,4 @@
-### Radon inversion in 2D/3D
+### Radon inversions in 2D/3D
 
 Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via Slice Projection Theorem. 
 Functions here take on input a CSV file containing Radon transforms and perform reconstructions by applying 
