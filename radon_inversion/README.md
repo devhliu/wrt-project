@@ -6,8 +6,8 @@ two times Fourier transforms (1D Fourier transform and then 3D (or 2D) inverse F
 
   * **rtft2D.m** - Fourier transform of Radon transforms in 2D with respect to shift
   * **rtft3D.m** - Fourier transforms of Radon transforms in 3D with respect to shift
-  * **nfft_reconstruct_3d.m** - inverse 3D Fourier transform of the data returned by rtft3D.m
-  * **nfft_reconstruct_2d.m** - inverse 2D Fourier transofmr of the data returned by rtft2D.m
+  * **nfft_reconstruct_3d.m** - inverse 3D Fourier transform of the data returned by rtft3d.m
+  * **nfft_reconstruct_2d.m** - inverse 2D Fourier transofmr of the data returned by rtft2d.m
 
 
 #### Dependencies
