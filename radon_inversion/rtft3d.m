@@ -78,16 +78,17 @@ function [nodes, values, jacobian_weights] = rtft3d(filename, nphi, ntheta, nshi
   printf("Primary nodes created. Appending nodes...");
   fflush(stdout);
   
-  % regularization -- append nodes outside the ball
+  % stabilization - append zero nodes outside the ball of radius of Nyquist frequency / 2
   append_nodes = cartprod(frequencies_centered, frequencies_centered, frequencies_centered); % all points in Fourier domain
-  append_nodes = [append_nodes, sqrt(sum(append_nodes.^2, 2))];                              % append norms column to the right
-  append_nodes = append_nodes(append_nodes(:, 4) > ((ntotal/2 + 1) * dfreq), :);             % choose nodes outside the ball
-  append_nodes = append_nodes(:, [1 2 3]);                                                   % remove norm column
+  append_nodes = [append_nodes, sqrt(sum(append_nodes.^2, 2))];                   % append norms column to the right
+  append_nodes = append_nodes(append_nodes(:, 4) > ((ntotal/2 + 1) * dfreq), :);  % choose nodes outside the ball
+  append_nodes = append_nodes(:, [1 2 3]);                                        % remove norm column
   nodes = [nodes; append_nodes];
   
   size_append = size(append_nodes, 1);  % remember the number of nodes that have been appended
   printf("Done. %d nodes created.\n", size_append);
   fflush(stdout);
+  clear append_nodes;
   
   printf("Computing jacobian weights for all nodes...");
   fflush(stdout);
@@ -125,5 +126,8 @@ function [nodes, values, jacobian_weights] = rtft3d(filename, nphi, ntheta, nshi
   values = [values; zeros(size_append, 1)];
   printf("Done.\n");
   fflush(stdout);
+  clear ft_shift_correction_matrix;
   % END ------------------------------------------------------------------------
+  
+  clear rt_matrix, phi_vec, theta_vec, frequencies_centered;
 endfunction 
