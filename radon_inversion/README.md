@@ -6,7 +6,7 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
 
   * **RtFt_2d.m** - Fourier transform of Radon transforms in 2D along shift variable
   * **RtFt_3d.m** - Fourier transforms of Radon transforms in 3D along shift variable
-  * **lgwt.m** - script for computation of Gaussian nodes in interval [-1, 1] (used in RtFt_3d.m)
+  * **lgwt.m** - script for computation of Gaussian nodes in interval [-1, 1], taken from [here](https://fr.mathworks.com/matlabcentral/fileexchange/4540-legendre-gauss-quadrature-weights-and-nodes?requestedDomain=)
   * **nfft_reconstruct_3d.m** - application of inverse Fourier transform to the data returned by RtFt_3d.m
 
 
