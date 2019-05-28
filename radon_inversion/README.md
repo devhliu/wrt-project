@@ -27,10 +27,10 @@ two times Fourier transforms (1D Fourier transform and then 3D (or 2D) inverse F
        Script reads Radon transforms in 3D from file and performs 1D Fourier transforms 
        along shift variable. 
        
-       Returns values
-         nodes            : points in frequency space where Fourier transforms is evaluated (size Nx3)
+       Returned values
+         nodes            : points in frequency domain where Fourier transforms is evaluated (size Nx3)
          values           : values for Fourier transform in nodes (size Nx1complex)
-         jacobian_weights : frequencies volumes associated to each node
+         jacobian_weights : volumes associated to each node in frequency domain
 
        Usage of the script
          filename          : file where the data is stored in CSV format
@@ -64,14 +64,15 @@ two times Fourier transforms (1D Fourier transform and then 3D (or 2D) inverse F
        Script reads Radon transforms in 2D from file and performs 1D Fourier transforms 
        along shift variable. 
        
-       Returns values
-         nodes            : points in 2D frequency domain where Fourier transforms is evaluated (size Nx3)
+       Returned values
+         nodes            : points in frequency domain where Fourier transforms is evaluated (size Nx2)
          values           : values of Fourier transform in nodes (size Nx1complex)
-         jacobian_weights : volume associated to each node in frequency space
+         jacobian_weights : volumes associated to each node in frequency domain
 
        Usage of the script
          filename          : file where the data is stored in CSV format
-                             Data is expected in the following format : "[shift], [phi], [value]\n",
+                             Data modeled by Radon transforms is expected in the 
+                             following format : "[shift], [phi], [value]\n",
                              Variables 'shift, phi' vary in the following order : 
                  
                                  for (shift) 
@@ -80,11 +81,11 @@ two times Fourier transforms (1D Fourier transform and then 3D (or 2D) inverse F
                                     end
                                  end
                                       
-         nphi              : number of projections in azimuth angle [0, 2*pi)
-                             Angles 'phi' are uniform on the circle.
+         nphi              : number of azimuthal angles [0, 2*pi)
+                             Angles 'phi' are assumed to be uniform on [0, 2*pi).
 
          nshift            : number of hyperplanes per one direction
-                             Shifts are uniform along [-1,1].
+                             Shifts are assumed uniform on [-1,1].
          rsupp             : radius of the support of the test function
          padding_coeff(default=4) : parameter to padd Radon transforms with zeros along shift
  
@@ -92,23 +93,20 @@ two times Fourier transforms (1D Fourier transform and then 3D (or 2D) inverse F
  
        test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weights)
        
-       Script performs reconstruction of a function from its 'values' of Fourier transforms at 'nodes'.
-       Result is given as a 3D matrix of size ngrid x ngrid x ngrid. 
+       Script performs reconstruction of a function from its 'values' of Fourier transforms 
+       computed at 'nodes'.
 
-       Returns values 
+       Returned values 
          test_function : real-valued matrix of size (ngrid x ngrid x ngrid)
 
        Usage of the script
         ngrid : number of points in [-1.0, 1.0); ngrid must be even;
-                Note that it is number of points on non-closed interval. 
-                NFFT assumes that your signal is periodic, so the values on the missing edge points
-                of the grid is can reconstructed from periodicity.  
         
-        nodes            : matrix of size (Nnodesx3); these are the points 
-                           in space where Fourier transform of signal is known. 
-        values           : vector of size (Nnodesx1(complex)); these are the values of 
-                           Fourier transform of the signal at nodes;
-        jacobian_weights : volumes of cells related to nodes in the Riemann summ of discretized Fourier integral
+        nodes            : matrix of size (NNodesx3); these are the points 
+                           in 3d-space where the Fourier transform of the function is known. 
+        values           : vector(NNodesx1(complex)) of values of Fourier transforms;
+        jacobian_weights : volumes assigned nodes in the discretization of the Riemann integral for 
+                           the Fourier transforms
         
 * **nfft_reconstruct_2d.m**
  
