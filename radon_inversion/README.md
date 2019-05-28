@@ -1,13 +1,14 @@
 ### Radon inversion in 2D/3D
 
-Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via projection theorem. 
-Generally speaking, functions here take an input a CSV file containing Radon transforms and inverts them via 
-projection theorem (1D Fourier transform + 3D inverse Fourier transform).
+Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via Slice Projection Theorem. 
+Functions here take an input a CSV file containing Radon transforms and perform reconstructions by applying 
+two times Fourier transforms (1D Fourier transform + 3D (or 2D) inverse Fourier transform).
 
-  * **RtFt_2d.m** - Fourier transform of Radon transforms in 2D along shift variable
-  * **RtFt_3d.m** - Fourier transforms of Radon transforms in 3D along shift variable
+  * **RtFt2D.m** - Fourier transform of Radon transforms in 2D with respect to shift
+  * **RtFt3D.m** - Fourier transforms of Radon transforms in 3D with respect to shift
   * **lgwt.m** - script for computation of Gaussian nodes in interval [-1, 1], taken from [here](https://fr.mathworks.com/matlabcentral/fileexchange/4540-legendre-gauss-quadrature-weights-and-nodes?requestedDomain=)
-  * **nfft_reconstruct_3d.m** - application of inverse Fourier transform to the data returned by RtFt_3d.m
+  * **NFFTRec3D.m** - inverse 3D Fourier transform of the data returned by RtFt3D.m
+  * **NFFTRec2D.m** - inverse 2D Fourier transofmr of the data returned by RtFt2D.m
 
 
 #### Dependencies
@@ -15,14 +16,9 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
    You must have Matlab/Octave interface for [NFFT](https://www-user.tu-chemnitz.de/~potts/nfft/) installed. 
    The link to this interface (mex-libraries) can be found [here](https://www-user.tu-chemnitz.de/~potts/nfft/download.php).
 
-   To install NFFT download Matlab/Octave binaries from the link given above (precompiled mex-files), unzip it 
-   and configure the path your Matlab/Octave to these files.
-
 #### Usage
 
- Before to use RtFt_3d.m load lgwt.m to your Matlab/Octave.
-
- * **RtFt_3d.m**
+ * **RtFt3D.m**
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
        
@@ -59,7 +55,7 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
          rsupp             : radius of the support of the test function
          padding_coeff (default=4) : parameter to padd Radon transforms with zeros along shift
  
- * **RtFt_2d.m**
+ * **RtFt2D.m**
  
        [nodes, values, jacobian_weights] = RtFt_2d(filename, nphi, nshift, rsupp, padding_coeff = 4)
        
@@ -90,14 +86,12 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
          rsupp             : radius of the support of the test function
          padding_coeff(default=4) : parameter to padd Radon transforms with zeros along shift
  
- * **nfft_reconstruct_3d.m**
+ * **NFFTRec3D.m**
  
        test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weights)
        
-       Script performs reconstruction of a function from its Fourier transforms at 'nodes' 
-       with values 'values'. Mathematically it works as a discretized version of (inverse) Fourier integral 
-       in 3D. Result is given as a 3D matrix of size : ngrid x ngrid x ngrid, which, in turn, is a 
-       grid on [-1,1)x[-1,1)x[-1,1). 
+       Script performs reconstruction of a function from its 'values' of Fourier transforms at 'nodes'.
+       Result is given as a 3D matrix of size ngrid x ngrid x ngrid. 
 
        Returns values 
          test_function : real-valued matrix of size (ngrid x ngrid x ngrid)
@@ -113,3 +107,26 @@ projection theorem (1D Fourier transform + 3D inverse Fourier transform).
         values           : vector of size (Nnodesx1(complex)); these are the values of 
                            Fourier transform of the signal at nodes;
         jacobian_weights : volumes of cells related to nodes in the Riemann summ of discretized Fourier integral
+        
+* **NFFTRec3D.m**
+ 
+       test_function = NFFTRec2D(ngrid, nodes, values, jacobian_weights)
+       
+       Script performs reconstruction of a function from its 'values' of Fourier transforms at 'nodes'. 
+       Result is given as a 3D matrix of size ngrid x ngrid pixels. 
+
+       Returns values 
+         test_function : real-valued matrix of size (ngrid x ngrid x ngrid)
+
+       Usage of the script
+        ngrid : number of points in [-1.0, 1.0); ngrid must be even;
+                Note that it is number of points on non-closed interval. 
+                NFFT assumes that your signal is periodic, so the values on the missing edge points
+                of the grid is can reconstructed from periodicity.  
+        
+        nodes            : matrix of size (Nnodesx3); these are the points 
+                           in space where Fourier transform of signal is known. 
+        values           : vector of size (Nnodesx1(complex)); these are the values of 
+                           Fourier transform of the signal at nodes;
+        jacobian_weights : volumes of cells related to nodes in the Riemann summ of discretized Fourier integral
+
