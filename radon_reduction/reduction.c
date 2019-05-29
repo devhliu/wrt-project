@@ -111,7 +111,7 @@ int main(int argc, char ** argv) {
 	fprintf(stderr, "%s: option '-%c' requires an argument\n",
 		argv[0], optopt);
 	exit(EXIT_SUCCESS);
-      case '?' /* help */
+      case '?': /* help */
 	print_usage(stderr, program_name, EXIT_SUCCESS);
       case -1: /* Done with the options. Cycle will quit */
 	break;
