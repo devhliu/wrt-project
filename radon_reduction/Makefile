@@ -6,12 +6,12 @@ OBJ=reduction.o init.o interpolation.o slicing.o
 ONAME=radon_reduction
 
 %.o: %.c
-	$(CC) -c -o $@ 
+	$(CC) -c -o $@ $< 
 
 $(ONAME): $(OBJ)
-	$(CC) -o $@ $(LIBS)
+	$(CC) -o $@ $^ $(LIBS)
 
 .PHONY: clean
 
 clean:
-rm -f *.o
+	rm -f *.o
