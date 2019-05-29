@@ -49,7 +49,7 @@ you can find further in respective folders.
         for information about 'layer-by-layer sampling scheme');
         test-function is given by its values on a discrete grid in a three-dimensional cube
   
-  * #### reduction_ray_radon (C)
+  * #### radon_reduction (C)
         reduces the data given by ray transforms in 3D in layer-by-layer sampling scheme to the 
         data given by Radon transforms in 3D
   * #### wradon_inversion/iterative (Matlab / Octave)
