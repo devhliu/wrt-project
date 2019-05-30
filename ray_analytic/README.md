@@ -10,7 +10,7 @@ plane ray transforms are computed. Hence, the rays (and the data) are parametriz
 (z, s, φ) are uniformly distributed in [-1,1]x[-1,1]x(0,2π), where the number of points is defined by the user in 
 the config file (binary/config.txt).
 
-**FORMAT** The ray transforms are returned in a separate file, in the following format: 
+**FORMAT:** The ray transforms are returned in a separate file, in the following format: 
 
       for islice = (0: nslice-1)
         for ishift = (0: nshift-1)
