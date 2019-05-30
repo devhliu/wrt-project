@@ -6,11 +6,21 @@ File "test_function.c" contains a template of such realization.
 
 **IMPORTANT:** This program computes ray transforms not for all rays in 3D, but for the slice-by-slice scheme. 
 It means that support of the test-function is sliced into by set of planes parallel to XY and in each 
-plane ray transforms are computed. Hence, the data is parametrized by the triple (z, s, &phi)
+plane ray transforms are computed. Hence, the rays (and the data) are parametrized by the triple (z, s, φ), where z is the coordinate of the slice (z=const), s - distance from the origin to the line, φ - angle for normal to the line. 
+(z, s, φ) are uniformly distributed in [-1,1]x[-1,1]x(0,2π), where the number of points is defined by the user in 
+the config file (config.txt in binary folder).
 
-For each such plane ray transforms are computed for rays with uniformly distributed 
-directions and shifts (in the plane). The output is stored in a CSV file, where the data is ordered as follows:  
- > [z coordinate of slice], [shift in the plane], [polar angle in the plane], [value of the ray transform]
+**FORMAT** The ray transforms are returned in a separate file, in the following format: 
+      for islice = (0: nslice-1)
+        for ishift = (0: nshift-1)
+          for iphi = (0: nhpi-1) 
+          
+             foutput(output_file, "%lf, %lf, %lf, %lf\n", z[islice], s[ishift], φ[iphi], Pf(z[islice], s[ishift], φ[iphi]);
+             
+          endfor
+        endfor
+      endfor
+
 
 ## Requirements 
 
@@ -32,32 +42,22 @@ GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
       ```
   If you want to generate ray data for other test-function then you have to change the file
   'test_function.c' and repeat steps (1,2) to recompile the binary.
-  
-## Usage / Examples
 
-(binary) -h --help &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Display usage information  
-(binary) -p --parameters filename &nbsp;&nbsp;&nbsp;&nbsp;: Read parameters of the ray grid from config file  
-(binary) -o --output filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Write output data to a file  
-(binary) -n --nthreads number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Use (number) of OpenMP threads for parallelization  
 
-### Config file requirements
+### Config file 
 
 The purpose of the config file for parameters -p (--parameters) is to provide to the program information about the grid  
-in ray space in slice-by-slice sampling scheme. The output data is parametrized by plane slice (z coordinate) and 
-by the cooridnates of a ray in this plane (polar angle, shift). Also, though the test-function is
-given by an analytical expression its integration over planes necessarily requires discretization which is also must be 
-given in the config file. More precisely, a test-function is always assumed to be supported in a unit ball in 3D which 
-lies inside the unit cube [-1,1]^3. So the parameter to be specified is a number of points per dimension in the uniform rectangular grid inside this unit cube.
+in ray space according to slice-by-slice scheme. 
 
-1) The first line contains a number of shifts which are positioned uniformly along [-1,1] (for a fixed direction in 
-a fixed plane).  
-1) The second line contains a number of polar angles which are positioned uniformly along [0,2pi].  
-3) The third line contains a number of z-slices which are positioned uniformly along [-1,1]. This value 
-is also corresponds to a number of points per dimension on [-1,1] for the grid on the unit cube [-1,1]^3.
+1. The first line contains a number of shifts which are positioned uniformly along [-1,1] (including endpoints -1,1).  
+2. The second line contains a number of polar angles which are positioned uniformly along [0,2π).
+3. The third line contains a number of z-slices which are positioned uniformly along [-1,1] (including endpoints -1,1).
 
-Some comments are allowed after each line, however the length of each line should not exceed 128 symbols.
+The length of each line should not exceed 128 symbols.
 
 ### Example of a config file
+
+A config (config.txt) file is already placed in binary folder. It has the following format: 
 
 > 129			: number of steps per fixed direction  
 > 256			: number of directions, i.e., longitude angles  
@@ -67,18 +67,19 @@ Some comments are allowed after each line, however the length of each line shoul
 ### Output
 
 The output stored in a specified output file (-o --output) in a CSV format in the following order:  
-**[z coordinate of slice], [shift in the plane], [polar angle in the plane], [value of the ray transform]**  
+**[z], [s], [φ], [Pf(z, s, φ)]**  
 
-Example:  
+Example of output:  
 > -1.000000, -1.000000, 5.571418, 0.000000  
 > -1.000000, -1.000000, 5.595962, 0.000000  
 > -1.000000, -1.000000, 5.620506, 0.000000  
 
 ### Examples of test-functions
 
-One can find in folder 'test_functions' some examples of realizations of test-functions.  
-In order to try them, rename any of those files to 'test_function.c' and copy them to the main directory of 'ray_analytic'.  
+One can find in folder 'examples-test-functions' some realizations of test-functions.  
+In order to try them, rename any of those files to 'test_function.c' and copy them to the main directory.  
 Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
 test-function. 
+
 
 
