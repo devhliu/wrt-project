@@ -2,13 +2,13 @@
 ## General description 
 
 This program computes ray transforms in 3D of a function which realized by an analytic expression in a separate file.  
-File "test_function.c" contains a template of such realization.
+File "test_function.c" contains a template of such realization which should be completed by the user before to compile.
 
 **IMPORTANT:** This program computes ray transforms not for all rays in 3D, but for the slice-by-slice scheme. 
 It means that support of the test-function is sliced into by set of planes parallel to XY and in each 
 plane ray transforms are computed. Hence, the rays (and the data) are parametrized by the triple (z, s, φ), where z is the coordinate of the slice (z=const), s - distance from the origin to the line, φ - angle for normal to the line. 
 (z, s, φ) are uniformly distributed in [-1,1]x[-1,1]x(0,2π), where the number of points is defined by the user in 
-the config file (config.txt in binary folder).
+the config file (binary/config.txt).
 
 **FORMAT** The ray transforms are returned in a separate file, in the following format: 
 
