@@ -1,12 +1,14 @@
 
 ## General description 
 
-This program computes ray transforms in 3D of analytic functions whose prototype should be realized in "test_function.c".  
-File "test_function.c" contains a template of such realization. Note that only the function with name "test_function" will be used for computations. After realizaiton of your test function you have to be compiled the code so you can run it.  
+This program computes ray transforms in 3D of a function which realized by an analytic expression in a separate file.  
+File "test_function.c" contains a template of such realization.
 
-**IMPORTANT:** This program computes ray transforms not for all rays in 3D, but accordingly to a slice-by-slice scheme. 
-It means that support of the test-function is sliced into a finite set of planes parallel to XY and in each 
-plane the ray transforms are computed. For each such plane ray transforms are computed for rays with uniformly distributed 
+**IMPORTANT:** This program computes ray transforms not for all rays in 3D, but for the slice-by-slice scheme. 
+It means that support of the test-function is sliced into by set of planes parallel to XY and in each 
+plane ray transforms are computed. Hence, the data is parametrized by the triple (z, s, $\phi$)
+
+For each such plane ray transforms are computed for rays with uniformly distributed 
 directions and shifts (in the plane). The output is stored in a CSV file, where the data is ordered as follows:  
  > [z coordinate of slice], [shift in the plane], [polar angle in the plane], [value of the ray transform]
 
@@ -18,27 +20,18 @@ To compile the project on your computer you need to have installed:
 GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 
 ## Compilation / Installation
-  1) Go to 'src' directory:  
-        ```
-          cd src
-        ```
-  2) Open Makefile and set the name of the output file:
-        open Makefile in any text editor and set
-        ```
-          ONAME=(output name of your binary)
-        ```
   
-  3) Run Makefile
+  1. Run Makefile
       ```
         make install
       ```
-  4) Clean directory from object files (optional):
+  2. Clean directory from object files (optional):
   
       ```
         make clean 
       ```
-  If you want to generate data for other test-function then you have to change the file
-  'test_function.c' and repeat steps (1-4), possibly setting a new name in 'ONAME'.
+  If you want to generate ray data for other test-function then you have to change the file
+  'test_function.c' and repeat steps (1,2) to recompile the binary.
   
 ## Usage / Examples
 
