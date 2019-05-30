@@ -23,8 +23,8 @@ the config file (binary/config.txt).
 
 ## Requirements 
 
-The programs here are designed to work under Unix operating systems.  
-To compile the project on your computer you need to have installed:  
+The programs here are designed to work under Unix operating systems. To compile the project on your 
+computer you need to have installed:  
 
 GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 
@@ -49,7 +49,7 @@ The purpose of the config file for parameters (-p, --parameters [file] options) 
 on the grid of rays. 
 
 1. The first line contains a number of shifts which are positioned uniformly along [-1,1] (including endpoints -1,1).  
-2. The second line contains a number of polar angles which are positioned uniformly along [0,2π).
+2. The second line contains a number of polar angles which are positioned uniformly along [0,2π].
 3. The third line contains a number of z-slices which are positioned uniformly along [-1,1] (including endpoints -1,1).
 
 The length of each line should not exceed 128 symbols.
@@ -65,9 +65,11 @@ A config (config.txt) file is already placed in binary folder. It has the follow
 
 ### Output
 
-The output is stored in an output file (-o, --output [file] options) in a CSV format in the following order: **[z], [s], [φ], [Pf(z, s, φ)]**  
+The output is stored in an output file (-o, --output [file] options) in a CSV format in the following order: 
+ **[z], [s], [φ], [Pf(z, s, φ)]**  
 
 Example of output:  
+
 > -1.000000, -1.000000, 5.571418, 0.000000  
 > -1.000000, -1.000000, 5.595962, 0.000000  
 > -1.000000, -1.000000, 5.620506, 0.000000  
