@@ -66,6 +66,7 @@ A config (config.txt) file is already placed in binary folder. It has the follow
 ### Output
 
 The output is stored in an output file (-o, --output [file] options) in a CSV format in the following order: 
+
  **[z], [s], [φ], [Pf(z, s, φ)]**  
 
 Example of output:  
