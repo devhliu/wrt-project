@@ -14,9 +14,7 @@ the config file (config.txt in binary folder).
       for islice = (0: nslice-1)
         for ishift = (0: nshift-1)
           for iphi = (0: nhpi-1) 
-          
              foutput(output_file, "%lf, %lf, %lf, %lf\n", z[islice], s[ishift], φ[iphi], Pf(z[islice], s[ishift], φ[iphi]);
-             
           endfor
         endfor
       endfor
@@ -46,8 +44,8 @@ GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 
 ### Config file 
 
-The purpose of the config file for parameters -p (--parameters) is to provide to the program information about the grid  
-in ray space according to slice-by-slice scheme. 
+The purpose of the config file for parameters (-p, --parameters [file] options) is to provide to the program information 
+on the grid of rays. 
 
 1. The first line contains a number of shifts which are positioned uniformly along [-1,1] (including endpoints -1,1).  
 2. The second line contains a number of polar angles which are positioned uniformly along [0,2π).
@@ -66,8 +64,7 @@ A config (config.txt) file is already placed in binary folder. It has the follow
 
 ### Output
 
-The output stored in a specified output file (-o --output) in a CSV format in the following order:  
-**[z], [s], [φ], [Pf(z, s, φ)]**  
+The output is stored in an output file (-o, --output [file] options) in a CSV format in the following order: **[z], [s], [φ], [Pf(z, s, φ)]**  
 
 Example of output:  
 > -1.000000, -1.000000, 5.571418, 0.000000  
