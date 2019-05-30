@@ -11,6 +11,7 @@ plane ray transforms are computed. Hence, the rays (and the data) are parametriz
 the config file (config.txt in binary folder).
 
 **FORMAT** The ray transforms are returned in a separate file, in the following format: 
+
       for islice = (0: nslice-1)
         for ishift = (0: nshift-1)
           for iphi = (0: nhpi-1) 
