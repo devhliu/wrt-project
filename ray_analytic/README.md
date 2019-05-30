@@ -77,7 +77,7 @@ Example of output:
 
 ### Examples of test-functions
 
-One can find in folder 'examples-test-functions' some realizations of test-functions.  
+One can find some examples of test-functions in /examples-test-functions.  
 In order to try them, rename any of those files to 'test_function.c' and copy them to the main directory.  
 Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
 test-function. 
