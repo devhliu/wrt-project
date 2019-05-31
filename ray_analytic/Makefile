@@ -4,7 +4,7 @@ OBJ=ray_analytic.o init.o integral.o test_function.o
 ONAME=ray_analytic
 
 %.o: %.c
-	$(CC) -c -o $@ $< 
+	$(CC) -c -o $@ $< $(LIBS)
 
 $(ONAME): $(OBJ)
 	$(CC) -o $@ $^ $(LIBS)
