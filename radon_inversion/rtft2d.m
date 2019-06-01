@@ -18,7 +18,7 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
 % in their intervals (0,2pi), [-1,1], respectively.
   
   rt = csvread(filename); 
-  rt = rt(: , size(data)(2));               % values of the weighted ray transforms; always take last column
+  rt = rt(: , size(rt)(2));               % values of the weighted ray transforms; always take last column
   rt_matrix = reshape(rt, nphi, nshift);      % reshape data into matrix [theta, phi, shift]
   clear rt;
   
@@ -60,7 +60,7 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
       values = [values; vec(ft1d_vec)];       % 'values' of the Fourier transform of test function at 'nodes'
   end
   
-  printf("Done. %d primary nodes created.\n Appending nodes...", size(values, 1));
+  printf("Done. %d primary nodes created.\nAppending nodes...", size(values, 1));
   fflush(stdout);
   
   % stabilization - append nodes outside of the ball of radius of Nyquist frequency
