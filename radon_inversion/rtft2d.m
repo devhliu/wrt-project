@@ -4,7 +4,7 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
 
 % This script reads data given by ray transforms in 2D from file and performs 
 % 1D Fourier transform along shift argument. Returns values (values) of the 
-% 1D Fourier integral and respective nodes (nodes) with volumes (jacobian_weights). 
+% 1D Fourier integral and respective nodes (nodes) with volumes corresponding to nodes (jacobian_weights). 
 
 % Usage of the script:
 
@@ -15,11 +15,12 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
 %   padding_coeff (4) : multiplying factor for appending data with zeros
  
 % It is assumed that angles 'phi' and 'shifts' are uniformly spaced 
-% in their intervals.
+% in their intervals (0,2pi), [-1,1], respectively.
   
-  data = csvread(filename); 
-  rt = data(: , size(data)(2));                 % values of the weighted ray transforms; always take last column
-  data_matrix = reshape(rt, nphi, nshift);      % reshape data into matrix [theta, phi, shift]
+  rt = csvread(filename); 
+  rt = rt(: , size(data)(2));               % values of the weighted ray transforms; always take last column
+  rt_matrix = reshape(rt, nphi, nshift);      % reshape data into matrix [theta, phi, shift]
+  clear rt;
   
   dphi = 2*pi/ nphi;
   dshift = 2 * rsupp / (nshift-1);
@@ -36,6 +37,9 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
   
   ft_shift_correction = exp(2 * pi * 1i * rsupp * frequencies);    % correction of FFT due to displacement [-1, 1] -> [0, 2]
 
+  printf("Generating nodes in Fourier space...\n");
+  fflush(stdout);
+  
   for i_phi = 1 : nphi
       % current angle phi
       phi = phi_vec(i_phi);
@@ -49,12 +53,15 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
       jacobian_weights = [jacobian_weights; jacobian_weight];
       
       % append 1D Fourier transform of RT using FFT along fixed direction
-      rt_at_direction = vec(data_matrix(i_phi, :));           % data on fixed direction
+      rt_at_direction = vec(rt_matrix(i_phi, :));           % data on fixed direction
       fft_vec = fft(rt_at_direction, ntotal);                          % 1D Fourier integral using 1D FFT
       ft1d_vec = dshift * fftshift(fft_vec .* ft_shift_correction);    % centralizing frequencies and jacobian correction
       
       values = [values; vec(ft1d_vec)];       % 'values' of the Fourier transform of test function at 'nodes'
   end
+  
+  printf("Done. %d primary nodes created.\n Appending nodes...", size(values, 1));
+  fflush(stdout);
   
   % stabilization - append nodes outside of the ball of radius of Nyquist frequency
   append_nodes = cartprod(frequencies_centered, frequencies_centered); % all points in Fourier domain
@@ -64,7 +71,14 @@ function [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsup
   nodes = [nodes; append_nodes];
   size_append = size(append_nodes, 1);  % remember the number of nodes that have been appended
   clear append_nodes;
+  
+  printf("Done. %d nodes appended.\n", size_append);
+  fflush(stdout);
+  
   values = [values; zeros(size_append, 1)];                               % append zero values
   jacobian_weights = [jacobian_weights; ones(size_append, 1)*(dfreq^2)];  % append square volumes
     
+  printf("Done.\n");
+  fflush(stdout); 
+   
 end 

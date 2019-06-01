@@ -86,7 +86,7 @@ function [nodes, values, jacobian_weights] = rtft3d(filename, nphi, ntheta, nshi
   nodes = [nodes; append_nodes];
   
   size_append = size(append_nodes, 1);  % remember the number of nodes that have been appended
-  printf("Done. %d nodes created.\n", size_append);
+  printf("%d primary nodes created. Appending nodes...", size(values, 1));
   fflush(stdout);
   clear append_nodes;
   
@@ -130,4 +130,8 @@ function [nodes, values, jacobian_weights] = rtft3d(filename, nphi, ntheta, nshi
   % END ------------------------------------------------------------------------
   
   clear rt_matrix, phi_vec, theta_vec, frequencies_centered;
+  
+  printf("Done.\n");
+  fflush(stdout); 
+  
 endfunction 
