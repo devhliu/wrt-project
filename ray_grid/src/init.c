@@ -4,19 +4,19 @@
 #include <errno.h>
 #include <string.h>
 
-#define MAX_COMMAND_SIZE 64
+#define MAX_COMMAND_SIZE 128
 
 /* Grid parameters */ 
 
-int init_parameters_alloc(int** parameters) {
+int parameters_alloc(int** parameters) {
   *parameters = (int*)malloc(4 * sizeof(int));
   
   return 0;
 }
-int init_parameters(char* filename, int* parameters) {
+int parameters_init(char* filename, int* parameters) {
   
   FILE *f;
-  char buffer[128];
+  char buffer[ MAX_COMMAND_SIZE ];
   
   f = fopen(filename, "r");
   if (f == NULL) {
@@ -80,14 +80,14 @@ int init_parameters(char* filename, int* parameters) {
   
 }
 
-int clean_parameters(int* parameters) {
+int parameters_clean(int* parameters) {
   free(parameters);
   return 0;
 }
 
 /* Initial values of the test-function */
 
-int init_values_alloc(int ngrid_tfunc, double**** values) {
+int tfunction_values_alloc(int ngrid_tfunc, double**** values) {
   int i,j;
   
   *values = (double***)malloc(sizeof(double**) * ngrid_tfunc);
@@ -103,7 +103,7 @@ int init_values_alloc(int ngrid_tfunc, double**** values) {
   return 0;  
 }
 
-int init_values(char* filename, int ngrid_tfunc, double*** values) {
+int tfunction_values_init(char* filename, int ngrid_tfunc, double*** values) {
   FILE *f;
   
   f = fopen(filename, "r");
@@ -137,7 +137,7 @@ int init_values(char* filename, int ngrid_tfunc, double*** values) {
   fclose(f);  
   return 0;	//exist sucess
 }
-int clean_values(int ngrid_tfunc, double*** values) {
+int tfunction_values_clean(int ngrid_tfunc, double*** values) {
   int i,j;
   for (i = 0; i < ngrid_tfunc; ++i) {
       for (j = 0; j < ngrid_tfunc; ++j) {
@@ -155,19 +155,12 @@ int clean_values(int ngrid_tfunc, double*** values) {
 
 /* Radon grid */
 
-int init_ray_grid_alloc(int nshift, int nphi, double** shift, double** phi) {
+int ray_grid_alloc(int nshift, int nphi, double** shift, double** phi) {
   *shift = (double*)malloc(nshift * sizeof(double));  
   *phi = (double*)malloc(nphi * sizeof(double));    
   return 0;
 }
-int init_ray_grid(int nshift, int nphi, double* shift, double* phi) {
-  
-  /*
-   * phi --   uniform grid on S^1 = [0,2pi]
-   * theta -- Gauss's angles on [0, pi]
-   * shift -- uniform points on [-1, 1]
-   */
-  
+int ray_grid_init(int nshift, int nphi, double* shift, double* phi) {
   //init shift
   const double dshift = 2.0 / (nshift - 1);
   int i_shift; 
@@ -182,7 +175,7 @@ int init_ray_grid(int nshift, int nphi, double* shift, double* phi) {
   
   return 0; // code sucess
 }
-int clean_ray_grid(double* shift, double* phi) {
+int ray_grid_clean(double* shift, double* phi) {
    
    if (shift != NULL)
      free(shift);
@@ -195,7 +188,7 @@ int clean_ray_grid(double* shift, double* phi) {
 
 /* Threads filenames */
 
-int init_chunks_filenames_alloc(char* filename, int nchunks, char*** chunks_filenames, int size) {
+int chunks_filenames_alloc(char* filename, int nchunks, char*** chunks_filenames, int size) {
   (*chunks_filenames) = (char**)malloc(sizeof(char*) * nchunks);
   int i;
   for (i = 0; i < nchunks; ++i) {
@@ -204,7 +197,7 @@ int init_chunks_filenames_alloc(char* filename, int nchunks, char*** chunks_file
   
   return 0;
 }
-int init_chunks_filenames(char* filename, int nchunks, char** chunks_filenames) {
+int chunks_filenames_init(char* filename, int nchunks, char** chunks_filenames) {
   int i;
   for (i = 0; i < nchunks; ++i) {
       sprintf(chunks_filenames[i], "%d_%s", i, filename);
@@ -212,7 +205,7 @@ int init_chunks_filenames(char* filename, int nchunks, char** chunks_filenames) 
   return 0;
 }
 
-int clean_chunks_files(int nchunks, char** chunks_filenames) {
+int chunks_files_clean(int nchunks, char** chunks_filenames) {
   int i_file;
   for (i_file = 0; i_file < nchunks; ++i_file) {
     char buffer[MAX_COMMAND_SIZE];
@@ -225,7 +218,7 @@ int clean_chunks_files(int nchunks, char** chunks_filenames) {
   return 0;
 }
 
-int clean_chunks_filenames(int nchunks, char** chunks_filenames) {
+int chunks_filenames_clean(int nchunks, char** chunks_filenames) {
   int i;
   for (i = 0; i < nchunks; ++i) {
       free(chunks_filenames[i]); 
@@ -233,4 +226,31 @@ int clean_chunks_filenames(int nchunks, char** chunks_filenames) {
 
   free(chunks_filenames);
   return 0;
+}
+
+
+void chunks_aggregate(char* output_filename, char ** chunks_filenames, int nchunks) {
+  
+  FILE *out; //output file
+  out = fopen(output_filename, "w");
+  
+  int i_file;
+  for (i_file = 0; i_file < nchunks; ++i_file) {
+    //write data from local files (*fp) to output file (*out)
+    FILE *fp;
+    fp = fopen(chunks_filenames[i_file], "r");
+    
+    //transmit by chunks of 1 mb
+    char buffer[1024 * 1024];
+    int size;
+    do {
+      size = fread(buffer, 1, sizeof(buffer), fp);
+      if (size <= 0) break;
+      fwrite(buffer, 1, size, out);
+    } while (size == sizeof(buffer));
+    //reached EOF, close local file
+    
+    fclose(fp);
+    //printf("  Data from %s has been sucessfully transmitted to %s\n", chunks_filenames[i_file], output_filename);
+ }
 }

@@ -1,8 +1,7 @@
-#ifndef _H_RAY_GRID_INTEGRALS
-#define _H_RAY_GRID_INTEGRALS
+#ifndef __H_RGRID_INTEGRALS
+#define __H_RGRID_INTEGRALS
 
-double ray_transform(double*** values, int ngrid_tfunc, 
-		        double zslice,
-			double shift, double phi, int ngrid);
+double ray_transform(double*** values, int ngrid, 
+		        double zslice, double shift, double phi);
 
 #endif

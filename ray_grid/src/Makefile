@@ -2,13 +2,12 @@ CC=gcc
 CFLAGS=-I.
 LIBS=-lm -fopenmp
 DEPS=init.h integral.h interp.h
-OBJ=ray3d_grid.o init.o integral.o interp.o
-ODIR=../binary
+OBJ=ray_grid.o init.o integral.o interp.o
 
 %.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS) 
+	$(CC) -c $< -o $@ $(LIBS)
 
-$(ODIR)/ray3d_grid: $(OBJ)
+ray_grid: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
