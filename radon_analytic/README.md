@@ -42,41 +42,35 @@ GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
       ```
   If you want to use other test-function then you have to change the file
   'test_function.c' and repeat steps (1-2), possibly setting a new name for binary in the Makefile.
-  
-## Usage / Examples
 
-(binary) -h --help &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Display usage information  
-(binary) -p --parameters filename &nbsp;&nbsp;&nbsp;&nbsp;: Read parameters of the grid in Radon space from config file  
-(binary) -o --output filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Write output data to a file  
-(binary) -n --nthreads number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Use (number) of OpenMP threads for parallelization  
 
-### Config file requirements
+### Config file 
 
-The purpose of the config file for parameters -p (--parameters) is to provide to the program information about the grid  
-in Radon space. Recall that data in Radon space is parametrized by directions on the unit sphere (two angles: latitude, longitude) and  by shifts along each direction (shifts vary uniformly in [-1,1]). Also, though the test-function is
-given by an analytical expression its integration over planes necessarily requires discretization which is also must be 
-given in the config file. More precisely, a test-function is always assumed to be supported in a unit ball in 3D which 
-lies inside the unit cube [-1,1]^3. So the parameter to be specified is a number of points per dimension in the uniform rectangular grid inside this unit cube.
+The config file (config.txt) is stored in /binary. 
 
-1) The first line contains a number of longitude angles which are positioned uniformly along [0,2pi].  
-2) The second line contains a number of latitude angles which are positioned according to Gauss-Legendre quadrature 
-   rule on [0, pi].  
-3) The third line contains a number of shifts which are positioned uniformly along [-1,1].  
-4) The fourth lines containes a number of points per dimension in a unit cube.  
+The purpose of the config file for parameters (-p, --parameters [file] options) is to provide to the program information 
+on the grid of rays. 
 
-Some comments are allowed after each line, however the length of each line should not exceed 128 symbols.
+1. The second line contains the number of longitude angles φ which are uniformly spaced in [0,2π].
+2. The second line contains the number of latitude angles θ which are distributed in [0,π] according to Gauss-quadrature rule. 
+3. The third line contains a number shifts 's' for planes with a fixed normal. Shifts are spaced uniformly along [-1,1] (including endpoints -1,1).
+4. The fourth line contains number of grid points 'ngrid' on each plane of integration. Each plane has size ngrid x ngrid. 
+This parameter affects precision of integration.
+
+The length of each line should not exceed 128 symbols
 
 ### Example of a config file
 
 > 256			: number of longitude angles  
 > 128			: number of latitude angles  
-> 129			: number of steps per fixed direction  
-> 129			: number of points on the grid per dimension
+> 129			: number of steps per fixed direction 
+> 129			: number of points on the plane in one dimension (plane will have grid of ngrid x ngrid points)
 
 ### Output
 
 The output stored in a specified output file (-o --output) in a CSV format in the following order:  
-**[shift], [longitude angle], [latitude angle], [value of Radon transform]**  
+
+**[s], [φ], [θ], [Rf(s,φ,θ)]**  
 
 Example:  
 > -1.000000, 0.000000, 3.122878, -0.009362  
@@ -85,7 +79,7 @@ Example:
 
 ### Examples of test-functions
 
-One can find in folder 'test_functions' some examples of realizations of some simple test-functions.  
+One can find in folder 'examples-test-functions' some examples of realizations of some simple test-functions.  
 In order to try them, rename any of those files to 'test_function.c' and copy them to the main directory of 'radon_analytic'.     Then proceed with steps in 'Compilation / Installation' in order to obtain a compiled binary for a given
 test-function. 
 
