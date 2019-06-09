@@ -3,7 +3,8 @@
 This program computes Radon transforms in 3D along planes of a function which realized by an analytic expression in a separate file.  File "test_function.c" contains a template of such realization which should be implemented by the user prior to compile.
 
 **IMPORTANT:** This program computes Radon transforms for all planes in 3D which belong to a certain grid. The planes are parametrized by triples (s, φ, θ), where s is the distance from the origin to the plane, (φ, θ) shperical angles for the normal vector of the plane. In particular, the normal vector is given by: (sin(θ)cos(φ), sin(θ)sin(φ), sin(θ)), φ is in [0,2π], θ is 
-in (0, π). Variables s, φ are distributed uniformly in [-1,1], (0,2π), respectively. Variable θ corresponds to Gauss-quadrature rule: θ_j = arccos(t_j), where t_j are uniform points on [-1,1].
+in (0, π). Variables s, φ are distributed uniformly in [-1,1], (0,2π), respectively. Variable θ corresponds to Gauss-quadrature rule: 
+      θ_j = arccos(t_j), where t_j are uniform points on [-1,1].
 
 The properties of grids (s, φ, θ) are set by user in the config file (binary/config.txt).
 
