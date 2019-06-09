@@ -1,14 +1,13 @@
 CC=gcc
-CFLAGS=-I. -fopenmp
-LIBS=-lm -lgsl -lgslcblas
+CFLAGS=-I.
+LIBS=-lm -fopenmp -lgsl -lgslcblas
 DEPS=init.h integral.h interp.h
-OBJ=radon3d_grid.o init.o integral.o interp.o
-ODIR=../binary
+OBJ=radon_grid.o init.o integral.o interp.o
 
-%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS) 
+%.o: %.c
+	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS) 
 
-$(ODIR)/radon3d_grid: $(OBJ)
+../binary/radon_grid: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean

@@ -5,19 +5,19 @@
 #include <string.h>
 #include <gsl/gsl_integration.h>
 
-#define MAX_COMMAND_SIZE 64
+#define MAX_COMMAND_SIZE 128
 
 /* Grid parameters */ 
 
-int init_parameters_alloc(int** parameters) {
+int parameters_alloc(int** parameters) {
   *parameters = (int*)malloc(4 * sizeof(int));
   
   return 0;
 }
-int init_parameters(char* filename, int* parameters) {
+int parameters_init(char* filename, int* parameters) {
   
   FILE *f;
-  char buffer[128];
+  char buffer[MAX_COMMAND_SIZE];
   
   f = fopen(filename, "r");
   if (f == NULL) {
@@ -81,14 +81,14 @@ int init_parameters(char* filename, int* parameters) {
   
 }
 
-int clean_parameters(int* parameters) {
+int parameters_clean(int* parameters) {
   free(parameters);
   return 0;
 }
 
 /* Initial values of the test-function */
 
-int init_values_alloc(int ngrid, double**** values) {
+int tfunction_values_alloc(int ngrid, double**** values) {
   int i,j;
   
   *values = (double***)malloc(sizeof(double**) * ngrid);
@@ -104,7 +104,7 @@ int init_values_alloc(int ngrid, double**** values) {
   return 0;  
 }
 
-int init_values(char* filename, int ngrid, double*** values) {
+int tfunction_values_init(char* filename, int ngrid, double*** values) {
   FILE *f;
   
   f = fopen(filename, "r");
@@ -120,25 +120,24 @@ int init_values(char* filename, int ngrid, double*** values) {
   for (xi = 0; xi < ngrid; ++xi)
     for (yi = 0; yi < ngrid; ++yi)
       for (zi = 0; zi < ngrid; ++zi) {
-	//read file line-by-line 
-	count = fscanf(f, "%lf\n", &(values[xi][yi][zi]));
-	if (count == EOF) {
-	   if (ferror(f)) {
-	      perror("Init test-function values : fscanf read value : EOF failure\n");
-	   } else {
-	      fprintf(stderr, "Error : init test-function : fscanf : reached the end of file before it was expected.\n");
-	   }
-	   return -1;
-	} else if (count != 1) {
-	      fprintf(stderr, "Error: init test-function : fscanf : matching failure, fscanf expected 1 floating-point value.\n");
-	      return -1;
-	}
+	    //read file line-by-line 
+	     count = fscanf(f, "%lf\n", &(values[xi][yi][zi]));
+       if (count == EOF) {
+	        if (ferror(f)) {
+	           perror("Init test-function values : fscanf read value : EOF failure\n");
+	        } else {
+	           fprintf(stderr, "Error : init test-function : fscanf : reached the end of file before it was expected.\n");
+	        }
+	        return -1;
+	     } else if (count != 1) {
+	       fprintf(stderr, "Error: init test-function : fscanf : matching failure, fscanf expected 1 floating-point value.\n");
+	       return -1;
+	     }
       }
-      
   fclose(f);  
   return 0;
 }
-int clean_values(int ngrid, double*** values) {
+int tfunction_values_clean(int ngrid, double*** values) {
   int i,j;
   for (i = 0; i < ngrid; ++i) {
       for (j = 0; j < ngrid; ++j) {
@@ -156,20 +155,14 @@ int clean_values(int ngrid, double*** values) {
 
 /* Radon grid */
 
-int init_radon_grid_alloc(int nphi, int ntheta, int nshift, double** phi, double** theta, double** shift) {
+int radon_grid_alloc(int nphi, int ntheta, int nshift, double** phi, double** theta, double** shift) {
     *phi = (double*)malloc(nphi * sizeof(double));
     *theta = (double*)malloc(ntheta * sizeof(double));
     *shift = (double*)malloc(nshift * sizeof(double));
     
     return 0;
 }
-int init_radon_grid(int nphi, int ntheta, int nshift, double* phi, double* theta, double* shift) {
-  /*
-   * phi --   uniform grid on S^1 = [0,2pi]
-   * theta -- Gauss's angles on [0, pi]
-   * shift -- uniform points on [-1, 1]
-   */
-  
+int radon_grid_init(int nphi, int ntheta, int nshift, double* phi, double* theta, double* shift) {
   //init phi 
   const double dphi = (2 * M_PI) / nphi;
   int iphi;
@@ -195,7 +188,7 @@ int init_radon_grid(int nphi, int ntheta, int nshift, double* phi, double* theta
   
   return 0;
 }
-int clean_radon_grid(double* phi, double* theta, double* shift) {
+int radon_grid_clean(double* phi, double* theta, double* shift) {
    if (phi != NULL)
      free(phi);
    if (theta != NULL)
@@ -208,7 +201,7 @@ int clean_radon_grid(double* phi, double* theta, double* shift) {
 
 /* Threads filenames */
 
-int init_chunks_filenames_alloc(char* filename, int nchunks, char*** chunks_filenames, int size) {
+int chunks_filenames_alloc(char* filename, int nchunks, char*** chunks_filenames, int size) {
   (*chunks_filenames) = (char**)malloc(sizeof(char*) * nchunks);
   int i;
   for (i = 0; i < nchunks; ++i) {
@@ -217,7 +210,7 @@ int init_chunks_filenames_alloc(char* filename, int nchunks, char*** chunks_file
   
   return 0;
 }
-int init_chunks_filenames(char* filename, int nchunks, char** chunks_filenames) {
+int chunks_filenames_init(char* filename, int nchunks, char** chunks_filenames) {
   int i;
   for (i = 0; i < nchunks; ++i) {
     sprintf(chunks_filenames[i], "%d_%s", i, filename);
@@ -225,7 +218,7 @@ int init_chunks_filenames(char* filename, int nchunks, char** chunks_filenames) 
   return 0;
 }
 
-int clean_chunks_files(int nchunks, char** chunks_filenames) {
+int chunks_files_clean(int nchunks, char** chunks_filenames) {
   int i_file;
   for (i_file = 0; i_file < nchunks; ++i_file) {
     char buffer[MAX_COMMAND_SIZE];
@@ -238,11 +231,37 @@ int clean_chunks_files(int nchunks, char** chunks_filenames) {
   return 0;
 }
 
-int clean_chunks_filenames(int nchunks, char** chunks_filenames) {
+int chunks_filenames_clean(int nchunks, char** chunks_filenames) {
   int i;
   for (i = 0; i < nchunks; ++i) {
       free(chunks_filenames[i]); 
   }
   free(chunks_filenames);
   return 0;
+}
+
+
+void chunks_aggregate(char* output_filename, char ** chunks_filenames, int nchunks) {
+  
+  FILE *out; //output file
+  out = fopen(output_filename, "w");
+  
+  int i_file;
+  for (i_file = 0; i_file < nchunks; ++i_file) {
+    //write data from local files (*fp) to output file (*out)
+    FILE *fp;
+    fp = fopen(chunks_filenames[i_file], "r");
+    
+    //transmit by chunks of 1 mb
+    char buffer[1024 * 1024];
+    int size;
+    do {
+      size = fread(buffer, 1, sizeof(buffer), fp);
+      if (size <= 0) break;
+      fwrite(buffer, 1, size, out);
+    } while (size == sizeof(buffer));
+    //reached EOF, close local file
+    
+    fclose(fp);
+ }
 }

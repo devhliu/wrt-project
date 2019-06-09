@@ -23,7 +23,7 @@ int vec_product(vect3d* vec, vect3d v1, vect3d v2) {
   return 0;
 }
 
-double plane_integral3d(double*** values, int ngrid,
+double plane_integral(double*** values, int ngrid,
 			double phi, double theta, double shift) {
   
   vect3d normal;
@@ -35,8 +35,8 @@ double plane_integral3d(double*** values, int ngrid,
   vect3d v2;
     vec_product(&v2, normal, v1);
     
-  const double delta = (2.0 / (ngrid - 1))/2.0;	//half-step of the initial step of the cube grid
-  const int nsize = 4 * ngrid;	//number of points per slice of the plane
+  const double delta = (1.0 / (ngrid));	//half-step of the initial step of the cube grid
+  const int nsize = 4 * ngrid;	        //number of points per slice of the plane
   double integral = 0;
   int i_v1, i_v2;
   
@@ -44,16 +44,16 @@ double plane_integral3d(double*** values, int ngrid,
     for (i_v2 = -(nsize / 2); i_v2 < (nsize/2); ++i_v2) {
         vect3d point;
 	
-	point.x = shift * normal.x + delta * v1.x * i_v1 + delta * v2.x * i_v2;
-	point.y = shift * normal.y + delta * v1.y * i_v1 + delta * v2.y * i_v2;
-	point.z = shift * normal.z + delta * v1.z * i_v1 + delta * v2.z * i_v2;
+	      point.x = shift * normal.x + delta * v1.x * i_v1 + delta * v2.x * i_v2;
+	      point.y = shift * normal.y + delta * v1.y * i_v1 + delta * v2.y * i_v2;
+	      point.z = shift * normal.z + delta * v1.z * i_v1 + delta * v2.z * i_v2;
 	
-	double value = cube_trilinear_interp(values, ngrid,
-	  point.x, point.y, point.z);
+	      double value = zero_interp(values, ngrid,
+	                     point.x, point.y, point.z);
 	
-	integral += value * delta * delta; //1D integration along v2
+	      integral += value * delta * delta; //1D integration along v2
     }
-    //1D integration along v1
+  //1D integration along v1
   }  
   return integral;
 }

@@ -21,7 +21,7 @@ double cell_trilinear_interp(double x, double y, double z,
 }
 
 
-
+//linear interpolation of a function
 double cube_trilinear_interp(double*** values, int ngrid,
     double x, double y, double z) {
   
@@ -57,4 +57,32 @@ double cube_trilinear_interp(double*** values, int ngrid,
 			values[ix][iy][iz], values[ix + 1][iy][iz], values[ix + 1][iy + 1][iz], values[ix][iy + 1][iz],
 			values[ix][iy][iz + 1], values[ix + 1][iy][iz + 1], values[ix + 1][iy + 1][iz + 1], values[ix][iy + 1][iz + 1]);
   return interp_value;
+}
+
+//no interpolation of a test-function
+double zero_interp(double*** values, int ngrid, 
+  double x, double y, double z) {
+  if ((fabs(x) > 1) || (fabs(y) > 1) || (fabs(z) > 1))
+    return 0;
+  
+  //get cells numbers
+  const double delta = 2.0 / ngrid;
+  int ix = (int)((x + 1.0) / delta), 
+      iy = (int)((y + 1.0) / delta), 
+      iz = (int)((z + 1.0) / delta);
+   
+  //control of positive boundary points
+  if (ix == ngrid) {
+     ix -= 1;
+     //cell_x = 1.0;
+  }
+  if (iy == ngrid) {
+     iy -= 1;
+     //cell_y = 1.0;
+  }
+  if (iz == ngrid) {
+     iz -= 1;
+     //cell_z = 1.0;
+  }
+  return values[ix][iy][iz];
 }
