@@ -7,6 +7,18 @@ in (0, π). Variables s, φ are distributed uniformly in [-1,1], (0,2π), respec
 
 The properties of grids (s, φ, θ) are set by user in the config file (binary/config.txt).
 
+**OUTPUT FORMAT:** The Radon transforms are returned in a separate csv file in the following format: 
+
+      for islice = (0: nslice-1)
+        for iphi = (0: nshift-1)
+          for itheta = (0: nhpi-1) 
+             foutput(output_file, "%lf, %lf, %lf, %lf\n", z[islice], s[ishift], φ[iphi], Rf(z[islice], s[ishift], φ[iphi]);
+          endfor
+        endfor
+      endfor
+
+
+
 ## Requirements 
 
 The programs here are designed to work under Unix operating systems.  
@@ -15,18 +27,20 @@ To compile the project on your computer you need to have installed:
 GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 
 ## Compilation / Installation
+
+  1) Go to 'src' directory
   
-  1) Run Makefile
+  2) Run Makefile
       ```
         make install
       ```
-  2) Clean directory from object files (optional):
+  3) Clean directory from object files (optional):
   
       ```
         make clean 
       ```
-  If you want to generate data for other test-function then you have to change the file
-  'test_function.c' and repeat steps (1-2), possibly setting a new name in the Makefile.
+  If you want to use other test-function then you have to change the file
+  'test_function.c' and repeat steps (1-2), possibly setting a new name for binary in the Makefile.
   
 ## Usage / Examples
 
