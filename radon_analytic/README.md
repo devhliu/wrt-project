@@ -12,27 +12,18 @@ To compile the project on your computer you need to have installed:
 GCC compiler, OpenMP libraries, GNU GSL libraries (+2.5)
 
 ## Compilation / Installation
-  1) Go to 'src' directory:  
-        ```
-          cd src
-        ```
-  2) Open Makefile and set the name of the output file:
-        open Makefile in any text editor and set
-        ```
-          ONAME=(output name of your binary)
-        ```
   
-  3) Run Makefile
+  1) Run Makefile
       ```
         make install
       ```
-  4) Clean directory from object files (optional):
+  2) Clean directory from object files (optional):
   
       ```
         make clean 
       ```
   If you want to generate data for other test-function then you have to change the file
-  'test_function.c' and repeat steps (1-4), possibly setting a new name in 'ONAME'.
+  'test_function.c' and repeat steps (1-2), possibly setting a new name in the Makefile.
   
 ## Usage / Examples
 
