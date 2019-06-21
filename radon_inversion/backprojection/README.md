@@ -1,12 +1,12 @@
 ### Radon inversions in 2D/3D via backprojection algorithms
 
-
-<p float="center">
-  
-<p float="center">
+<figure> 
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv1.png" width="360" />
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv0.png" width="360" />
-</p>
+  <figcaption>
+    Adjoint transform (left) and applied laplacian (right) in 3D for Radon data disturbed by strong Poisson noise
+  </figcaption>
+</figure>
 
 
 Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via backprojection.
