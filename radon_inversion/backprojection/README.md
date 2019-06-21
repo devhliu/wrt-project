@@ -2,6 +2,9 @@
 
 
 <p float="center">
+  
+<p float="center">
+  <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv0.png" width="360" />
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv1.png" width="360" />
 </p>
 
@@ -11,13 +14,13 @@ Functions here take on input a CSV file containing Radon transforms and perform 
 first a dual Radon transform (backprojection) and then a filter is applied (R* and then spectral derivative - 
 square root of Laplacian in 2D, Laplacian in 3D).
 
-  * **adjointrad3d.m** - computation of adjoint Radon transform in 3D
-  * **flaplace2d.m** - takes spectral laplacian in 2D of an image
-  * **flaplace3d.m** - spectral laplacian in 3D of a volumetric image
+  * **adjrad3d.m** - computation of adjoint Radon transform in 3D
+  * **laplace2dfft.m** - spectral laplacian in 2D
+  * **laplace3dfft.m** - spectral laplacian in 3D
 
 #### Usage
 
- * **adjointrad3d.m**
+ * **adjrad3d.m**
  
        [nodes, values, jacobian_weights] = rtft2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
        
@@ -54,7 +57,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
          rsupp             : radius of the support of the test function
          padding_coeff (default=4) : parameter to padd Radon transforms with zeros along shift
  
- * **flaplace2d.m**
+ * **laplace2dfft.m**
  
        [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsupp, padding_coeff = 4)
        
@@ -86,7 +89,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
          rsupp             : radius of the support of the test function
          padding_coeff(default=4) : parameter to padd Radon transforms with zeros along shift
  
- * **flaplace3d.m**
+ * **laplace3dfft.m**
  
        test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weights)
        
