@@ -1,4 +1,4 @@
-function adjoint = adjradon3d_test(filename, ngrid, nphi, ntheta, nshift, interp_method=1, rsupp=1.0, expand_factor=2.0) 
+function adjoint = adjradon3d(filename, ngrid, nphi, ntheta, nshift, interp_method=1, rsupp=1.0, expand_factor=2.0) 
   
 % adjradon3d.m 
 
