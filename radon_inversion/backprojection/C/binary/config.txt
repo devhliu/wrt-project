@@ -1,0 +1,4 @@
+129			: number of longitude angles on [0, 2pi)
+128			: number of latitude angles on (0, pi)
+256			: number of steps per fixed direction
+128			: number of points on the grid per dimension (-1, 1)
