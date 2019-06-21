@@ -12,7 +12,7 @@ two times Fourier transforms (1D Fourier transform and then 3D (or 2D) inverse F
 
 #### Dependencies
 
-   You must have Matlab/Octave interface for [NFFT](https://www-user.tu-chemnitz.de/~potts/nfft/) installed. 
+   You must have Matlab/Octave interface for [NFFT](https://www-user.tu-chemnitz.de/~potts/nfft/) from Chemnitz TU installed. 
    The link to this interface (mex-libraries) can be found [here](https://www-user.tu-chemnitz.de/~potts/nfft/download.php).
    
    Also I used Matlab script *lgwt.m* for Gauss-Legendre quadrature rule taken from here [here](https://fr.mathworks.com/matlabcentral/fileexchange/4540-legendre-gauss-quadrature-weights-and-nodes?requestedDomain=) and a script *cartprod.m* 
