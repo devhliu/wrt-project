@@ -1,5 +1,11 @@
 ### Radon inversions in 2D/3D via Backprojection algorithm
 
+
+<p float="center">
+  <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojection.png" width="360" />
+</p>
+
+
 Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via backprojection.
 Functions here take on input a CSV file containing Radon transforms and perform reconstructions by applying 
 first a dual Radon transform (backprojection) and then a filter is applied (R* and then spectral derivative - 
