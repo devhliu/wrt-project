@@ -1,4 +1,4 @@
-### Radon inversions in 2D/3D via Backprojection algorithm
+### Radon inversions in 2D/3D via backprojection algorithms
 
 
 <p float="center">
