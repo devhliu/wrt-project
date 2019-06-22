@@ -4,7 +4,7 @@
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv1.png" width="360" />
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv0.png" width="360" />
   <br>
-  <em> Adjoint Radon transform (left) and applied Laplacian in 3D (right) for Radon data corrupted with strong Poisson noise </em>
+  <em> Adjoint of the Radon transform (left) and applied Laplacian in 3D (right) for Radon data corrupted with strong Poisson noise </em>
 </p>
 
 
@@ -21,7 +21,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
 
  * **adjrad3d.m**
  
-       [nodes, values, jacobian_weights] = rtft2d(filename, nphi, ntheta, nshift, rsupp, padding_coeff = 4)
+       test_function = adjrad3d(filename, ngrid, nphi, ntheta, nshift, interp_method=1, rsupp=1.0, exp_coeff=2.0)
        
        Script reads Radon transforms in 3D from file and performs 1D Fourier transforms 
        along shift variable. 
@@ -58,7 +58,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
  
  * **laplace2dfft.m**
  
-       [nodes, values, jacobian_weights] = rtft2d(filename, nphi, nshift, rsupp, padding_coeff = 4)
+       [nodes, values, jacobian_weights] = laplace2dfft(f, ngrid, period)
        
        Script reads Radon transforms in 2D from file and performs 1D Fourier transforms 
        along shift variable. 
@@ -90,7 +90,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
  
  * **laplace3dfft.m**
  
-       test_function = nfft_reconstruct_3d(ngrid, nodes, values, jacobian_weights)
+       test_function = laplace3dfft(f, ngrid, period)
        
        Script performs reconstruction of a function from its 'values' of Fourier transforms 
        computed at 'nodes'.
@@ -106,3 +106,9 @@ square root of Laplacian in 2D, Laplacian in 3D).
         values           : vector(NNodesx1(complex)) of values of Fourier transforms;
         jacobian_weights : volumes assigned nodes in the discretization of the Riemann integral for 
                            the Fourier transforms
+## Future plans
+
+  * Matlab/Octave code works is not parallelized and works sufficiently slow (it could be optimized, using the special 
+  structure of the backprojection integral)
+  
+  * Backprojection for Radon transforms could be efficiently realized in C with help of GSL or other matrix libraries. 
