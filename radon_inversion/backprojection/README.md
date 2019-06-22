@@ -1,4 +1,4 @@
-### Radon inversions in 2D/3D via backprojection algorithms
+### Inversions in 2D/3D via backprojection algorithms
 
 <p float="center"> 
   <img src="https://github.com/fedor-goncharov/Weighted-ray-Radon-transforms-in-3D/blob/master/pictures/backprojectionv1.png" width="360" />
@@ -8,20 +8,21 @@
 </p>
 
 
-Octave/Matlab scripts for inversion of classical Radon transforms in 2D/3D via backprojection.
-Functions here take on input a CSV file containing Radon transforms and perform reconstructions by applying 
-first a dual Radon transform (backprojection) and then a filter is applied (R* and then spectral derivative - 
-square root of Laplacian in 2D, Laplacian in 3D).
+Octave/Matlab/C codes for computation of the adjoint Radon transforms in 2D/3D. In 3D the inversion of Radon transforms 
+can be implemented as a backprojection algorithm when the adjoint transform is applied first and then the laplacian is applied after. In 2D the after the adjoint transform the inversion is not given by a laplacian (but a Hilbert transform), however 
+for completeness reasons we put here code for laplacian in 2D. 
 
-  * **adjrad3d.m** - computation of adjoint Radon transform in 3D
+
+  * **adjrad3d.m** - Matlab/Octave scrpit for computation of the adjoint Radon transform in 3D
   * **laplace2dfft.m** - spectral laplacian in 2D
   * **laplace3dfft.m** - spectral laplacian in 3D
+  * **hilbert1dfft.m** - spectral Hilbert transform in 2D
 
 #### Usage
 
  * **adjrad3d.m**
  
-       test_function = adjrad3d(filename, ngrid, nphi, ntheta, nshift, interp_method=1, rsupp=1.0, exp_coeff=2.0)
+       output_adjoint = adjrad3d(filename, ngrid, nphi, ntheta, nshift, interp_method=1, rsupp=1.0, exp_coeff=2.0)
        
        Script reads Radon transforms in 3D from file and performs 1D Fourier transforms 
        along shift variable. 
@@ -58,7 +59,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
  
  * **laplace2dfft.m**
  
-       [nodes, values, jacobian_weights] = laplace2dfft(f, ngrid, period)
+       output_laplace = laplace2dfft(f, ngrid, period)
        
        Script reads Radon transforms in 2D from file and performs 1D Fourier transforms 
        along shift variable. 
@@ -90,7 +91,7 @@ square root of Laplacian in 2D, Laplacian in 3D).
  
  * **laplace3dfft.m**
  
-       test_function = laplace3dfft(f, ngrid, period)
+       output_laplace = laplace3dfft(f, ngrid, period)
        
        Script performs reconstruction of a function from its 'values' of Fourier transforms 
        computed at 'nodes'.
@@ -110,5 +111,9 @@ square root of Laplacian in 2D, Laplacian in 3D).
 
   * Matlab/Octave code works is not parallelized and works sufficiently slow (it could be optimized, using the special 
   structure of the backprojection integral)
+  
+  * On the images border artifcats are present -- this is due to the property of a spectral laplacian (the argument is 
+  not a periodic function) and can be fixed in a few ways -- either to compute adjoint on a bigger image or use sampling 
+  by Chebyshev polynomials or apply periodization techniques (Lionel Moisan -- Periodic plus smooth image decomposition).
   
   * Backprojection for Radon transforms could be efficiently realized in C with help of GSL or other matrix libraries. 
