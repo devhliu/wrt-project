@@ -9,8 +9,10 @@
 
 
 Octave/Matlab/C codes for computation of the adjoint Radon transforms in 2D/3D. In 3D the inversion of Radon transforms 
-can be implemented as a backprojection algorithm when the adjoint transform is applied first and then the laplacian is applied after. In 2D the after the adjoint transform the inversion is not given by a laplacian (but a Hilbert transform), however 
+can be implemented as a backprojection algorithm when the adjoint transform is applied first and then the laplacian is applied after. In 2D the after the adjoint transform the inversion is not given by the laplacian (but by the Hilbert transform), however 
 for completeness reasons we put here code for laplacian in 2D. 
+
+The implementation of spectral laplacians is based on the notes from MIT from [here](https://math.mit.edu/~stevenj/fft-deriv.pdf) by Steven J. Johnson. 
 
 
   * **adjrad3d.m** - Matlab/Octave scrpit for computation of the adjoint Radon transform in 3D
