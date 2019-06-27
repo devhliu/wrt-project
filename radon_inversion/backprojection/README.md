@@ -23,7 +23,8 @@ The implementation of spectral laplacians is based on the notes from MIT from [h
 #### Usage
 
  * **adjrad3d.m**
- 
+       
+       Function takes on input Radon transforms of a certain function and computes its adjoint Radon transform in 3D.  
        The Radon data are assumed to be given on grid uniform in shifts and uniform-gauss in directions on the sphere.
 
        Input parameters : 
