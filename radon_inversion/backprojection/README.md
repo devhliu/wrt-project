@@ -24,40 +24,36 @@ The implementation of spectral laplacians is based on the notes from MIT from [h
 
  * **adjrad3d.m**
  
-       output_adjoint = adjrad3d(filename, ngrid, nphi, ntheta, nshift, interp_method=1, rsupp=1.0, exp_coeff=2.0)
-       
-       Script reads Radon transforms in 3D from file and performs 1D Fourier transforms 
-       along shift variable. 
-       
-       Returned values
-         nodes            : points in frequency domain where Fourier transforms is evaluated (size Nx3)
-         values           : values for Fourier transform in nodes (size Nx1complex)
-         jacobian_weights : volumes associated to each node in frequency domain
+       The Radon data are assumed to be given on grid uniform in shifts and uniform-gauss in directions on the sphere.
 
-       Usage of the script
-         filename          : file where the data is stored in CSV format
-                             Data is expected in the following format : "[shift], [phi], [theta], [value]\n",
-                             Variables 'shift, phi, theta' must vary in the following order : 
-                 
-                                 for (shift) 
+       Input parameters : 
+            filename : file with Radon transforms
+            ngrid    : number of pixels in one direction in the XYZ-domain
+            nphi     : number of longitude angles [0, 2pi]
+            ntheta   : number of latitude angles [0, pi]
+            nshift   : 
+       interp_method : interpolation method, because Radon transforms are given on a discrete grid
+                      an interpolated data is needed for computation of the adjoint integral
+                      possible methdods : 1 is "linear" (default), 0 is "nearest"
+ 
+            rsupp    : length of the XYZ-domain in one direction (by default = 1.0)
+       expand_factor : compute adjoint transform on the grid on the size [expand_factor * ngrid]^3
+
+       Return value : 
+            A three-dimensional matrix is returned of size (expand_factor x ngrid) per dimension, 
+            where elements stand for the adjoint Radon transform at given pixel.
+       
+       A remark : 
+  
+       Radon data in file is expected to be ordered as follows : 
+                                for (shift) 
                                     for (phi) 
                                        for (theta)
-                                        ....
+                                         fprintf("%f\n", radon(f, shift, phi, theta)
                                        end
                                     end
                                  end
-                                      
-         nphi              : number of azimuth nodes in [0, 2*pi)
-         ntheta            : number of polar nodes in (0, pi)
-        
-                             Angles 'phi' are uniform on the circle and angles 'theta' 
-                             correspond to Gaussian quadrature points, i.e., theta_j = arccos(t_j), 
-                             (t_j, j = 1, ntheta) - Gauss-Lebato points on [-1, 1]. 
-
-         nshift            : number of hyperplanes per one direction
-                             Shifts are uniform along [-1,1]
-         rsupp             : radius of the support of the test function
-         padding_coeff (default=4) : parameter to padd Radon transforms with zeros along shift
+                                 
  
  * **laplace2dfft.m**
  
